@@ -10,10 +10,15 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    var timerIsActive = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        
+        timerIsActive = false
+
     }
 
     override var representedObject: AnyObject? {
@@ -22,6 +27,31 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func startTimer(sender: AnyObject) {
+        timerIsActive = !timerIsActive
+        
+        
+    }
 
+    @IBAction func pauseTimer(sender: AnyObject) {
+    }
+    
+    @IBAction func setHours(sender: AnyObject) {
+        if !timerIsActive {
+            
+        }
+    }
+    
+    @IBAction func setMinutes(sender: AnyObject) {
+        if !timerIsActive {
+            
+        }
+    }
+    
+    @IBAction func setSeconds(sender: AnyObject) {
+        if !timerIsActive {
+            
+        }
+    }
 }
 
