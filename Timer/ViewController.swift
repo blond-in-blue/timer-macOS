@@ -10,6 +10,8 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    var timer = NSTimer()
+    var timerCounter = 0
     var timerIsActive = false
     
     override func viewDidLoad() {
@@ -18,7 +20,7 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
         
         timerIsActive = false
-
+        
     }
 
     override var representedObject: AnyObject? {
@@ -26,32 +28,69 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+    
+    @IBOutlet weak var timeLabel: NSTextFieldCell!
+    @IBOutlet weak var startCancelButton: NSButtonCell!
+    @IBOutlet weak var pauseButton: NSButtonCell!
+    @IBOutlet weak var timerSeconds: NSTextField!
+    @IBOutlet weak var timerMinutes: NSTextField!
+    @IBOutlet weak var timerHours: NSTextField!
 
     @IBAction func startTimer(sender: AnyObject) {
+        
         timerIsActive = !timerIsActive
+
+        if timerIsActive == false {
+            timer.invalidate()
+            timerCounter = 0
+            timerSeconds.stringValue = ""
+            timerMinutes.stringValue = ""
+            timerHours.stringValue = ""
+        }
+        else if timerIsActive == true {
+            if timerSeconds != "" && timerMinutes != "" && timerHours != "" {
+                startCancelButton.stringValue = "Cancel"
+                
+                timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
+                
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerCountdown", userInfo: nil, repeats: true)
+            }
+        }
+    }
+    
+    func timerCountdown() {
         
+        timerIsActive = true
+        --timerCounter
         
+        if timerCounter == 0 {
+            timer.invalidate()
+            timerCounter = 0
+            timerSeconds.stringValue = ""
+            timerMinutes.stringValue = ""
+            timerHours.stringValue = ""
+            timerIsActive = false
+        } else if timerCounter > 0 {
+            timerSeconds.stringValue = "\(timerCounter % 60)"
+            timerMinutes.stringValue = "\((timerCounter / 60) % 60)"
+            timerHours.stringValue = "\((timerCounter / 3600) % 24)"
+            
+            if timerSeconds.stringValue == "0" {
+                timerSeconds.stringValue = "00"
+            }
+            if timerMinutes.stringValue == "0" {
+                timerMinutes.stringValue = "00"
+            }
+            if timerHours.stringValue == "0" {
+                timerHours.stringValue = "00"
+            }
+        }
     }
 
     @IBAction func pauseTimer(sender: AnyObject) {
-    }
-    
-    @IBAction func setHours(sender: AnyObject) {
-        if !timerIsActive {
-            
-        }
-    }
-    
-    @IBAction func setMinutes(sender: AnyObject) {
-        if !timerIsActive {
-            
-        }
-    }
-    
-    @IBAction func setSeconds(sender: AnyObject) {
-        if !timerIsActive {
-            
-        }
+   
+            timer.invalidate()
+            timerIsActive = false
     }
 }
 
