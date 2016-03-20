@@ -13,6 +13,8 @@ class ViewController: NSViewController {
     var timer = NSTimer()
     var timerCounter = 0
     var timerIsActive = false
+    var startButtonHasBeenPressed = false
+    var pauseButtonHasBeenPressed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,8 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
         
         timerIsActive = false
-        
+        startButtonHasBeenPressed = false
+        pauseButtonHasBeenPressed = false
     }
 
     override var representedObject: AnyObject? {
@@ -38,22 +41,30 @@ class ViewController: NSViewController {
 
     @IBAction func startTimer(sender: AnyObject) {
         
-        timerIsActive = !timerIsActive
-
-        if timerIsActive == false {
-            timer.invalidate()
-            timerCounter = 0
-            timerSeconds.stringValue = ""
-            timerMinutes.stringValue = ""
-            timerHours.stringValue = ""
-        }
-        else if timerIsActive == true {
-            if timerSeconds != "" && timerMinutes != "" && timerHours != "" {
-                startCancelButton.stringValue = "Cancel"
+        if timerSeconds.stringValue != "" || timerMinutes.stringValue != "" || timerHours.stringValue != "" {
+            timerIsActive = !timerIsActive
+            startButtonHasBeenPressed = !startButtonHasBeenPressed
+            
+            if timerIsActive == false || pauseButtonHasBeenPressed == true {
+                timer.invalidate()
+                timerCounter = 0
+                timerSeconds.stringValue = ""
+                timerMinutes.stringValue = ""
+                timerHours.stringValue = ""
+                
+                startCancelButton.title = "Start"
+                pauseButton.title = "Pause"
+                timerIsActive = false
+                pauseButtonHasBeenPressed = false
+            }
+            else if timerIsActive == true {
                 
                 timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
                 
                 timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerCountdown", userInfo: nil, repeats: true)
+                
+                startCancelButton.title = "Cancel"
+                timerIsActive = true
             }
         }
     }
@@ -70,6 +81,7 @@ class ViewController: NSViewController {
             timerMinutes.stringValue = ""
             timerHours.stringValue = ""
             timerIsActive = false
+            startCancelButton.title = "Start"
         } else if timerCounter > 0 {
             timerSeconds.stringValue = "\(timerCounter % 60)"
             timerMinutes.stringValue = "\((timerCounter / 60) % 60)"
@@ -89,8 +101,25 @@ class ViewController: NSViewController {
 
     @IBAction func pauseTimer(sender: AnyObject) {
    
-            timer.invalidate()
-            timerIsActive = false
+        if (timerSeconds.stringValue != "" || timerMinutes.stringValue != "" || timerHours.stringValue != "") && startButtonHasBeenPressed == true {
+            
+            pauseButtonHasBeenPressed = !pauseButtonHasBeenPressed
+            
+            if timerIsActive == true {
+                timer.invalidate()
+                pauseButton.title = "Resume"
+            }
+            else if timerIsActive == false {
+                
+                timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
+                
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerCountdown", userInfo: nil, repeats: true)
+                
+                pauseButton.title = "Pause"
+            }
+            
+            timerIsActive = !timerIsActive
+        }
     }
 }
 
