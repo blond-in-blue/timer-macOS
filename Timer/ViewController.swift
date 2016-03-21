@@ -25,7 +25,6 @@ class ViewController: NSViewController {
         timerIsActive = false
         startButtonHasBeenPressed = false
         pauseButtonHasBeenPressed = false
-        
         pauseButton?.enabled = false
         
     }
@@ -58,6 +57,7 @@ class ViewController: NSViewController {
             startButtonHasBeenPressed = !startButtonHasBeenPressed
             
             if timerIsActive == false || pauseButtonHasBeenPressed == true {
+                
                 timer.invalidate()
                 timerCounter = 0
                 timerSeconds.stringValue = ""
@@ -69,6 +69,14 @@ class ViewController: NSViewController {
                 timerIsActive = false
                 pauseButton.enabled = false
                 pauseButtonHasBeenPressed = false
+                
+                timerSeconds.selectable = true
+                timerMinutes.selectable = true
+                timerHours.selectable = true
+                timerSeconds.editable = true
+                timerMinutes.editable = true
+                timerHours.editable = true
+
             }
             else if timerIsActive == true {
                 
@@ -79,6 +87,10 @@ class ViewController: NSViewController {
                 pauseButton.enabled = true
                 
                 timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerCountdown", userInfo: nil, repeats: true)
+                
+                timerSeconds.selectable = false
+                timerMinutes.selectable = false
+                timerHours.selectable = false
             }
         }
     }
@@ -99,6 +111,12 @@ class ViewController: NSViewController {
             startButtonHasBeenPressed = false
             pauseButtonHasBeenPressed = false
             pauseButton.enabled = false
+            timerSeconds.selectable = true
+            timerMinutes.selectable = true
+            timerHours.selectable = true
+            timerSeconds.editable = true
+            timerMinutes.editable = true
+            timerHours.editable = true
             
 //            performSegueWithIdentifier("alertView", sender: nil)
             
