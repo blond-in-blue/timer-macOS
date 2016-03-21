@@ -45,10 +45,6 @@ class ViewController: NSViewController {
     @IBOutlet weak var timerMinutes: NSTextField!
     @IBOutlet weak var timerHours: NSTextField!
     @IBOutlet weak var alertLabel: NSTextField!
-
-    @IBOutlet weak var secondsField: NSNumberFormatter!
-    @IBOutlet weak var minutesField: NSNumberFormatter!
-    @IBOutlet weak var hoursField: NSNumberFormatter!
     
     @IBAction func startTimer(sender: AnyObject) {
         
@@ -87,6 +83,12 @@ class ViewController: NSViewController {
                 pauseButton.enabled = true
                 
                 timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerCountdown", userInfo: nil, repeats: true)
+                
+                
+                
+//                self.timerSeconds.resignFirstResponder()
+//                self.timerMinutes.resignFirstResponder()
+//                self.timerHours.resignFirstResponder()
                 
                 timerSeconds.selectable = false
                 timerMinutes.selectable = false
