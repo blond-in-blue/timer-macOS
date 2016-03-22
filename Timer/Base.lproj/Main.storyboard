@@ -121,11 +121,7 @@ DQ
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
-                                        <menuItem title="Timer" keyEquivalent="0" id="R4o-n2-Eq4">
-                                            <connections>
-                                                <segue destination="B8D-0N-5wS" kind="custom" id="N7i-Io-cl4"/>
-                                            </connections>
-                                        </menuItem>
+                                        <menuItem title="Timer" keyEquivalent="0" id="R4o-n2-Eq4"/>
                                         <menuItem isSeparatorItem="YES" id="aeH-tT-zxm"/>
                                         <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -180,177 +176,6 @@ DQ
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="cs4-Sj-g5I">
-            <objects>
-                <viewController storyboardIdentifier="timerView" id="FQN-hl-kxI" customClass="ViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="FXh-Kr-dBr">
-                        <rect key="frame" x="0.0" y="0.0" width="152" height="70"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RJc-g1-v6y">
-                                <rect key="frame" x="-2" y="28" width="156" height="42"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title=":     :" placeholderString=":     :" usesSingleLineMode="YES" id="chC-ib-YmE">
-                                    <font key="font" metaFont="system" size="30"/>
-                                    <color key="textColor" red="0.16076871752738953" green="0.16079312562942505" blue="0.16076037287712097" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0eB-9M-wWT">
-                                <rect key="frame" x="9" y="4" width="64" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="eCK-se-NE8"/>
-                                </constraints>
-                                <buttonCell key="cell" type="roundTextured" title="Pause" alternateTitle="Resume" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ASk-jG-dto">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="pauseTimer:" target="FQN-hl-kxI" id="JAt-pB-QlI"/>
-                                </connections>
-                            </button>
-                            <textField toolTip="Hours" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eTJ-1K-1iK" userLabel="Hours">
-                                <rect key="frame" x="7" y="36" width="46" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="49o-bu-RYF"/>
-                                    <constraint firstAttribute="width" constant="42" id="kDu-FD-qef"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="tb8-00-Ftt">
-                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="GoY-M4-yXm">
-                                        <integer key="multiplier" value="1"/>
-                                        <real key="minimum" value="0.0"/>
-                                        <real key="maximum" value="23"/>
-                                    </numberFormatter>
-                                    <font key="font" metaFont="system" size="30"/>
-                                    <color key="textColor" red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="0.84530141843971629" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField toolTip="Minutes" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sM3-qo-FtB" userLabel="Minutes">
-                                <rect key="frame" x="53" y="36" width="46" height="31"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="I4V-q0-CfT">
-                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="jrr-db-0HI">
-                                        <integer key="multiplier" value="1"/>
-                                        <real key="minimum" value="0.0"/>
-                                        <real key="maximum" value="59"/>
-                                    </numberFormatter>
-                                    <font key="font" metaFont="system" size="30"/>
-                                    <color key="textColor" red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="0.84530141843971629" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField toolTip="Seconds" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mYf-JU-NOZ" userLabel="Seconds">
-                                <rect key="frame" x="99" y="36" width="46" height="31"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="wRQ-Qq-pmM">
-                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="Cbs-Jr-u1z">
-                                        <integer key="multiplier" value="1"/>
-                                        <real key="minimum" value="0.0"/>
-                                        <real key="maximum" value="59"/>
-                                    </numberFormatter>
-                                    <font key="font" metaFont="system" size="30"/>
-                                    <color key="textColor" red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="0.84530141843971629" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UWq-51-Wwe">
-                                <rect key="frame" x="78" y="4" width="64" height="25"/>
-                                <buttonCell key="cell" type="roundTextured" title="Start" alternateTitle="Cancel" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CbW-nL-7i9">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="startTimer:" target="FQN-hl-kxI" id="vWO-P9-46P"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="0eB-9M-wWT" firstAttribute="baseline" secondItem="UWq-51-Wwe" secondAttribute="firstBaseline" id="1gW-9d-LZe"/>
-                            <constraint firstAttribute="trailing" secondItem="UWq-51-Wwe" secondAttribute="trailing" constant="10" id="1jT-gd-KdR"/>
-                            <constraint firstItem="mYf-JU-NOZ" firstAttribute="baseline" secondItem="sM3-qo-FtB" secondAttribute="baseline" id="3tU-Nh-cL3"/>
-                            <constraint firstAttribute="trailing" secondItem="mYf-JU-NOZ" secondAttribute="trailing" constant="9" id="4Nt-gW-Qhh"/>
-                            <constraint firstItem="eTJ-1K-1iK" firstAttribute="leading" secondItem="FXh-Kr-dBr" secondAttribute="leading" constant="9" id="6ga-4s-bul"/>
-                            <constraint firstItem="eTJ-1K-1iK" firstAttribute="top" secondItem="FXh-Kr-dBr" secondAttribute="top" constant="3" id="DlW-6n-yMf"/>
-                            <constraint firstItem="eTJ-1K-1iK" firstAttribute="leading" secondItem="0eB-9M-wWT" secondAttribute="leading" id="FMN-wd-K7Y"/>
-                            <constraint firstItem="UWq-51-Wwe" firstAttribute="baseline" secondItem="0eB-9M-wWT" secondAttribute="firstBaseline" id="bEF-se-iFN"/>
-                            <constraint firstItem="mYf-JU-NOZ" firstAttribute="firstBaseline" secondItem="sM3-qo-FtB" secondAttribute="firstBaseline" id="eGO-ix-Bev"/>
-                            <constraint firstItem="0eB-9M-wWT" firstAttribute="top" secondItem="eTJ-1K-1iK" secondAttribute="bottom" constant="8" symbolic="YES" id="eyo-lO-pQv"/>
-                            <constraint firstItem="RJc-g1-v6y" firstAttribute="top" secondItem="FXh-Kr-dBr" secondAttribute="top" id="eys-y7-vxJ"/>
-                            <constraint firstItem="mYf-JU-NOZ" firstAttribute="leading" secondItem="sM3-qo-FtB" secondAttribute="trailing" constant="4" id="fRK-lu-6M8"/>
-                            <constraint firstAttribute="trailing" secondItem="RJc-g1-v6y" secondAttribute="trailing" id="gFb-DA-vvA"/>
-                            <constraint firstItem="UWq-51-Wwe" firstAttribute="top" secondItem="RJc-g1-v6y" secondAttribute="bottom" id="jdm-yB-5RF"/>
-                            <constraint firstItem="sM3-qo-FtB" firstAttribute="firstBaseline" secondItem="eTJ-1K-1iK" secondAttribute="firstBaseline" id="k2y-iV-2eW"/>
-                            <constraint firstItem="sM3-qo-FtB" firstAttribute="centerX" secondItem="RJc-g1-v6y" secondAttribute="centerX" id="nTY-xD-BFK"/>
-                            <constraint firstItem="RJc-g1-v6y" firstAttribute="leading" secondItem="FXh-Kr-dBr" secondAttribute="leading" id="pVj-Af-8WD"/>
-                            <constraint firstItem="eTJ-1K-1iK" firstAttribute="baseline" secondItem="sM3-qo-FtB" secondAttribute="baseline" id="r4d-JI-pMb"/>
-                            <constraint firstItem="sM3-qo-FtB" firstAttribute="leading" secondItem="eTJ-1K-1iK" secondAttribute="trailing" constant="4" id="syW-2b-0Nn"/>
-                            <constraint firstItem="UWq-51-Wwe" firstAttribute="leading" secondItem="0eB-9M-wWT" secondAttribute="trailing" constant="5" id="zvr-Tc-k2p"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="pauseButton" destination="ASk-jG-dto" id="0EG-er-CNx"/>
-                        <outlet property="startCancelButton" destination="CbW-nL-7i9" id="sjH-f3-btx"/>
-                        <outlet property="timeLabel" destination="chC-ib-YmE" id="IBP-JX-EpF"/>
-                        <outlet property="timerHours" destination="eTJ-1K-1iK" id="Siy-20-2Te"/>
-                        <outlet property="timerMinutes" destination="sM3-qo-FtB" id="iYK-sp-1kC"/>
-                        <outlet property="timerSeconds" destination="mYf-JU-NOZ" id="3K7-vt-otQ"/>
-                        <segue destination="Rxp-8o-32h" kind="sheet" identifier="alertView" id="OVw-8u-Vog"/>
-                    </connections>
-                </viewController>
-                <customObject id="Zt6-7z-8so" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="75" y="513"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="oWx-0A-ebj">
-            <objects>
-                <viewController storyboardIdentifier="alertView" id="Rxp-8o-32h" customClass="ViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" identifier="alertView" id="1Gq-Zr-5EV">
-                        <rect key="frame" x="0.0" y="0.0" width="136" height="62"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fde-oN-1dE">
-                                <rect key="frame" x="0.0" y="30" width="136" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="Oa6-Pg-0tO"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="Timer Finished" usesSingleLineMode="YES" id="hiU-i0-2xx">
-                                    <font key="font" metaFont="system" size="19"/>
-                                    <color key="textColor" red="0.16076871752738953" green="0.16079312562942505" blue="0.16076037287712097" alpha="0.84745303468208089" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rs3-rA-yff">
-                                <rect key="frame" x="31" y="-1" width="74" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="62" id="ame-DI-QIw"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Dismiss" alternateTitle="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y47-qI-bGM">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="dismissController:" target="Rxp-8o-32h" id="1ly-0o-D9A"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="fde-oN-1dE" firstAttribute="centerX" secondItem="Rs3-rA-yff" secondAttribute="centerX" id="4dE-UW-bnP"/>
-                            <constraint firstItem="fde-oN-1dE" firstAttribute="leading" secondItem="1Gq-Zr-5EV" secondAttribute="leading" constant="2" id="O7i-o0-xZG"/>
-                            <constraint firstItem="fde-oN-1dE" firstAttribute="top" secondItem="1Gq-Zr-5EV" secondAttribute="top" constant="8" id="cpG-hf-CyW"/>
-                            <constraint firstItem="fde-oN-1dE" firstAttribute="centerX" secondItem="1Gq-Zr-5EV" secondAttribute="centerX" id="fcD-Kl-l27"/>
-                            <constraint firstItem="Rs3-rA-yff" firstAttribute="top" secondItem="fde-oN-1dE" secondAttribute="bottom" constant="3" id="mcG-NY-qgS"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="alertLabel" destination="fde-oN-1dE" id="lBJ-tm-DCc"/>
-                        <outlet property="startCancelButton" destination="y47-qI-bGM" id="XdE-8S-4ER"/>
-                        <outlet property="startTimer" destination="y47-qI-bGM" id="fwf-K7-g9j"/>
-                    </connections>
-                </viewController>
-                <customObject id="fqR-2e-hvS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="347" y="513"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="fs6-xW-jhR">
             <objects>
                 <viewController storyboardIdentifier="timerView" id="TJ9-HD-c9B" customClass="ViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
@@ -377,6 +202,16 @@ DQ
                                 </buttonCell>
                                 <connections>
                                     <action selector="pauseTimer:" target="TJ9-HD-c9B" id="8zA-Fy-aqA"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UAZ-v6-4X6">
+                                <rect key="frame" x="78" y="4" width="64" height="25"/>
+                                <buttonCell key="cell" type="roundTextured" title="Start" alternateTitle="Cancel" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KcK-Is-ptf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="SIt-Ir-gvE"/>
                                 </connections>
                             </button>
                             <textField toolTip="Hours" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-Kb-7Vl" userLabel="Hours">
@@ -422,56 +257,44 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UAZ-v6-4X6">
-                                <rect key="frame" x="78" y="4" width="64" height="25"/>
-                                <buttonCell key="cell" type="roundTextured" title="Start" alternateTitle="Cancel" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KcK-Is-ptf">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="SIt-Ir-gvE"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-nW-Nsf">
-                                <rect key="frame" x="39" y="-1" width="74" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="62" id="H8r-6s-5kX"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Dismiss" alternateTitle="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nsh-cS-480">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="dismissController:" target="Rxp-8o-32h" id="AWb-FO-RMy"/>
-                                </connections>
-                            </button>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qtV-od-bRT">
-                                <rect key="frame" x="-2" y="37" width="156" height="25"/>
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qtV-od-bRT">
+                                <rect key="frame" x="-2" y="35" width="156" height="25"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="Timer Finished" usesSingleLineMode="YES" id="mGB-qs-W0I">
                                     <font key="font" metaFont="system" size="21"/>
                                     <color key="textColor" red="0.16076871749999999" green="0.1607931256" blue="0.1607603729" alpha="0.8474530347" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-nW-Nsf">
+                                <rect key="frame" x="39" y="0.0" width="74" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="1xM-rh-zDF"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Dismiss" alternateTitle="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nsh-cS-480">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissAlert:" target="TJ9-HD-c9B" id="Oij-Ab-kJt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="3kM-nW-Nsf" firstAttribute="baseline" secondItem="UAZ-v6-4X6" secondAttribute="baseline" id="16P-l2-79f"/>
                             <constraint firstAttribute="trailing" secondItem="U7l-Qt-SaW" secondAttribute="trailing" constant="9" id="3Tj-BJ-wdi"/>
-                            <constraint firstItem="qtV-od-bRT" firstAttribute="centerY" secondItem="KwM-d1-EfW" secondAttribute="centerY" id="3VG-zN-3sx"/>
                             <constraint firstItem="U7l-Qt-SaW" firstAttribute="firstBaseline" secondItem="RZI-5d-1eG" secondAttribute="firstBaseline" id="4fE-3v-03C"/>
                             <constraint firstItem="KwM-d1-EfW" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" id="4v6-yA-mrx"/>
-                            <constraint firstItem="qtV-od-bRT" firstAttribute="leading" secondItem="KwM-d1-EfW" secondAttribute="leading" id="ASY-EU-Y4H"/>
                             <constraint firstItem="U7l-Qt-SaW" firstAttribute="baseline" secondItem="RZI-5d-1eG" secondAttribute="baseline" id="D9Y-Qv-ieU"/>
                             <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" constant="9" id="KM6-8Y-axf"/>
                             <constraint firstItem="m5U-Kb-7Vl" firstAttribute="baseline" secondItem="RZI-5d-1eG" secondAttribute="baseline" id="OKV-M0-rw9"/>
                             <constraint firstItem="KwM-d1-EfW" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" id="Ok1-C9-laS"/>
-                            <constraint firstItem="qtV-od-bRT" firstAttribute="trailing" secondItem="KwM-d1-EfW" secondAttribute="trailing" id="Z9S-zg-NNs"/>
+                            <constraint firstItem="qtV-od-bRT" firstAttribute="leading" secondItem="KwM-d1-EfW" secondAttribute="leading" id="QeI-GC-PKS"/>
+                            <constraint firstItem="qtV-od-bRT" firstAttribute="trailing" secondItem="KwM-d1-EfW" secondAttribute="trailing" id="aNk-2u-hSm"/>
                             <constraint firstItem="RZI-5d-1eG" firstAttribute="firstBaseline" secondItem="m5U-Kb-7Vl" secondAttribute="firstBaseline" id="dG4-92-MxK"/>
                             <constraint firstItem="UAZ-v6-4X6" firstAttribute="baseline" secondItem="eIr-Kq-WML" secondAttribute="firstBaseline" id="fOv-aK-zi8"/>
                             <constraint firstAttribute="trailing" secondItem="UAZ-v6-4X6" secondAttribute="trailing" constant="10" id="fUt-nf-PuR"/>
                             <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="m5U-Kb-7Vl" secondAttribute="bottom" constant="8" symbolic="YES" id="g2g-UZ-GKX"/>
                             <constraint firstItem="UAZ-v6-4X6" firstAttribute="top" secondItem="KwM-d1-EfW" secondAttribute="bottom" id="gIO-j7-VyK"/>
-                            <constraint firstItem="qtV-od-bRT" firstAttribute="centerX" secondItem="3kM-nW-Nsf" secondAttribute="centerX" id="hgU-Gt-d5D"/>
+                            <constraint firstItem="3kM-nW-Nsf" firstAttribute="top" secondItem="UAZ-v6-4X6" secondAttribute="top" id="hT4-94-js5"/>
                             <constraint firstItem="U7l-Qt-SaW" firstAttribute="leading" secondItem="RZI-5d-1eG" secondAttribute="trailing" constant="4" id="nGr-Yi-JYj"/>
                             <constraint firstItem="RZI-5d-1eG" firstAttribute="centerX" secondItem="KwM-d1-EfW" secondAttribute="centerX" id="nRH-jb-rll"/>
                             <constraint firstItem="eIr-Kq-WML" firstAttribute="baseline" secondItem="UAZ-v6-4X6" secondAttribute="firstBaseline" id="pPC-vo-hHu"/>
@@ -480,12 +303,17 @@ DQ
                             <constraint firstItem="m5U-Kb-7Vl" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="3" id="wBf-Ge-f6e"/>
                             <constraint firstItem="UAZ-v6-4X6" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="trailing" constant="5" id="yf9-Ad-h3C"/>
                             <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="leading" id="z4S-C9-BYk"/>
+                            <constraint firstItem="3kM-nW-Nsf" firstAttribute="centerX" secondItem="qtV-od-bRT" secondAttribute="centerX" id="zxA-Sb-TIH"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="pauseButton" destination="tb0-o5-gtA" id="hzh-KS-xcx"/>
+                        <outlet property="alertLabel" destination="qtV-od-bRT" id="skN-YH-NP9"/>
+                        <outlet property="alertLabelText" destination="mGB-qs-W0I" id="a45-8X-lde"/>
+                        <outlet property="dismissAlertButton" destination="3kM-nW-Nsf" id="rkC-dX-sml"/>
+                        <outlet property="pauseButton" destination="eIr-Kq-WML" id="Vst-37-2JL"/>
+                        <outlet property="startButton" destination="UAZ-v6-4X6" id="gyp-IV-3Dw"/>
                         <outlet property="startCancelButton" destination="KcK-Is-ptf" id="Lcy-Yf-Uhd"/>
-                        <outlet property="timeLabel" destination="bOW-RB-g1s" id="mwN-z2-9jl"/>
+                        <outlet property="timeLabel" destination="KwM-d1-EfW" id="AAv-om-jwQ"/>
                         <outlet property="timerHours" destination="m5U-Kb-7Vl" id="wmV-g3-k0p"/>
                         <outlet property="timerMinutes" destination="RZI-5d-1eG" id="RRd-0c-Ff6"/>
                         <outlet property="timerSeconds" destination="U7l-Qt-SaW" id="CrQ-Wn-0xf"/>
@@ -493,10 +321,7 @@ DQ
                 </viewController>
                 <customObject id="2m4-lZ-qEU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-125" y="555"/>
+            <point key="canvasLocation" x="75" y="455"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="N7i-Io-cl4"/>
-    </inferredMetricsTieBreakers>
 </document>

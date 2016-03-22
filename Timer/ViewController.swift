@@ -12,7 +12,7 @@ class ViewController: NSViewController {
 
     var timer = NSTimer()
     var timerCounter = 0
-    var alertCounter = 120
+    var alertCounter = 240
     var timerIsActive = false
     var startButtonHasBeenPressed = false
     var pauseButtonHasBeenPressed = false
@@ -22,9 +22,6 @@ class ViewController: NSViewController {
         
         // Do any additional setup after loading the view.
         initializeTimerView()
-    }
-    
-    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
     }
     
     func initializeTimerView() {
@@ -46,7 +43,7 @@ class ViewController: NSViewController {
             timerMinutes.stringValue = ""
             timerHours.stringValue = ""
             timerIsActive = false
-            startCancelButton.title = "Start"
+            startButton.title = "Start"
             startButtonHasBeenPressed = false
             pauseButtonHasBeenPressed = false
             pauseButton.enabled = false
@@ -61,11 +58,14 @@ class ViewController: NSViewController {
             timerMinutes.enabled = true
             timerHours.enabled = true
             
-            performSegueWithIdentifier("alertView", sender: nil)
+//            performSegueWithIdentifier("alertView", sender: nil)
             
 //            NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifier", object: nil)
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.showAlert), userInfo: nil, repeats: true)
+            alertLabelText.textColor = NSColor.blackColor()
+            revealAlertView()
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(ViewController.showAlert), userInfo: nil, repeats: true)
         }
         else if timerCounter > 0 {
             timerSeconds.stringValue = "\(timerCounter % 60)"
@@ -84,13 +84,15 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBOutlet weak var timeLabel: NSTextFieldCell!
-    @IBOutlet weak var startCancelButton: NSButtonCell!
-    @IBOutlet weak var pauseButton: NSButtonCell!
+    @IBOutlet weak var timeLabel: NSTextField!
+    @IBOutlet weak var startButton: NSButton!
+    @IBOutlet weak var pauseButton: NSButton!
     @IBOutlet weak var timerSeconds: NSTextField!
     @IBOutlet weak var timerMinutes: NSTextField!
     @IBOutlet weak var timerHours: NSTextField!
     @IBOutlet weak var alertLabel: NSTextField!
+    @IBOutlet weak var alertLabelText: NSTextFieldCell!
+    @IBOutlet weak var dismissAlertButton: NSButton!
     
     @IBAction func startTimer(sender: AnyObject) {
         
@@ -106,7 +108,7 @@ class ViewController: NSViewController {
                 timerMinutes.stringValue = ""
                 timerHours.stringValue = ""
                 
-                startCancelButton.title = "Start"
+                startButton.title = "Start"
                 pauseButton.title = "Pause"
                 timerIsActive = false
                 pauseButton.enabled = false
@@ -130,7 +132,7 @@ class ViewController: NSViewController {
                 
                 if timerCounter != 0 {
 
-                    startCancelButton.title = "Cancel"
+                    startButton.title = "Cancel"
                     timerIsActive = true
                     pauseButton.enabled = true
                     
@@ -177,22 +179,46 @@ class ViewController: NSViewController {
         alertCounter -= 1
         
         if alertCounter == 0 {
-            timer.invalidate()
-            alertCounter = 120
-            alertLabel?.alphaValue = 1
+            dismissAlert(self)
         }
-        else if alertLabel?.alphaValue == 0.5 {
-            alertLabel.alphaValue = 1
+        else if alertLabelText.textColor == NSColor.blackColor() {
+            alertLabelText.textColor = NSColor.redColor()
         }
-        else if alertLabel?.alphaValue == 1 {
-            alertLabel.alphaValue = 0.5
+        else if alertLabelText.textColor == NSColor.redColor() {
+            alertLabelText.textColor = NSColor.blackColor()
         }
     }
     
     @IBAction func dismissAlert(sender: AnyObject) {
         timer.invalidate()
-        alertCounter = 120
-//        dismissViewController(NSviewcon)
+        alertCounter = 240
+        revealTimerView()
+    }
+    
+    func revealAlertView() {
+        timerSeconds.hidden = true
+        timerMinutes.hidden = true
+        timerHours.hidden = true
+        timeLabel.hidden = true
+        pauseButton.hidden = true
+        startButton.hidden = true
+        
+        alertLabel.hidden = false
+        dismissAlertButton.hidden = false
+
+    }
+    
+    func revealTimerView() {
+        
+        timerSeconds.hidden = false
+        timerMinutes.hidden = false
+        timerHours.hidden = false
+        timeLabel.hidden = false
+        pauseButton.hidden = false
+        startButton.hidden = false
+        
+        alertLabel.hidden = true
+        dismissAlertButton.hidden = true
     }
 }
 
