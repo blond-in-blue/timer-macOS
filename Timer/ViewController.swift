@@ -21,21 +21,67 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        initializeTimerView()
+    }
+    
+    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+    }
+    
+    func initializeTimerView() {
         timerIsActive = false
         startButtonHasBeenPressed = false
         pauseButtonHasBeenPressed = false
         pauseButton?.enabled = false
-        
-    }
-
-    override var representedObject: AnyObject? {
-        didSet {
-        // Update the view, if already loaded.
-        }
     }
     
-    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+    func timerCountdown() {
+        
+        timerIsActive = true
+        timerCounter -= 1
+        
+        if timerCounter == 0 {
+            timer.invalidate()
+            timerCounter = 0
+            timerSeconds.stringValue = ""
+            timerMinutes.stringValue = ""
+            timerHours.stringValue = ""
+            timerIsActive = false
+            startCancelButton.title = "Start"
+            startButtonHasBeenPressed = false
+            pauseButtonHasBeenPressed = false
+            pauseButton.enabled = false
+            timerSeconds.selectable = true
+            timerMinutes.selectable = true
+            timerHours.selectable = true
+            timerSeconds.editable = true
+            timerMinutes.editable = true
+            timerHours.editable = true
+            
+            timerSeconds.enabled = true
+            timerMinutes.enabled = true
+            timerHours.enabled = true
+            
+            performSegueWithIdentifier("alertView", sender: nil)
+            
+//            NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifier", object: nil)
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.showAlert), userInfo: nil, repeats: true)
+        }
+        else if timerCounter > 0 {
+            timerSeconds.stringValue = "\(timerCounter % 60)"
+            timerMinutes.stringValue = "\((timerCounter / 60) % 60)"
+            timerHours.stringValue = "\((timerCounter / 3600) % 24)"
+            
+            if timerSeconds.stringValue == "0" {
+                timerSeconds.stringValue = "00"
+            }
+            if timerMinutes.stringValue == "0" {
+                timerMinutes.stringValue = "00"
+            }
+            if timerHours.stringValue == "0" {
+                timerHours.stringValue = "00"
+            }
+        }
     }
     
     @IBOutlet weak var timeLabel: NSTextFieldCell!
@@ -66,6 +112,10 @@ class ViewController: NSViewController {
                 pauseButton.enabled = false
                 pauseButtonHasBeenPressed = false
                 
+                timerSeconds.enabled = true
+                timerMinutes.enabled = true
+                timerHours.enabled = true
+
                 timerSeconds.selectable = true
                 timerMinutes.selectable = true
                 timerHours.selectable = true
@@ -78,67 +128,23 @@ class ViewController: NSViewController {
                 
                 timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
                 
-                startCancelButton.title = "Cancel"
-                timerIsActive = true
-                pauseButton.enabled = true
-                
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerCountdown", userInfo: nil, repeats: true)
-                
-                
-                
-//                self.timerSeconds.resignFirstResponder()
-//                self.timerMinutes.resignFirstResponder()
-//                self.timerHours.resignFirstResponder()
-                
-                timerSeconds.selectable = false
-                timerMinutes.selectable = false
-                timerHours.selectable = false
-            }
-        }
-    }
-    
-    func timerCountdown() {
-        
-        timerIsActive = true
-        --timerCounter
-        
-        if timerCounter == 0 {
-            timer.invalidate()
-            timerCounter = 0
-            timerSeconds.stringValue = ""
-            timerMinutes.stringValue = ""
-            timerHours.stringValue = ""
-            timerIsActive = false
-            startCancelButton.title = "Start"
-            startButtonHasBeenPressed = false
-            pauseButtonHasBeenPressed = false
-            pauseButton.enabled = false
-            timerSeconds.selectable = true
-            timerMinutes.selectable = true
-            timerHours.selectable = true
-            timerSeconds.editable = true
-            timerMinutes.editable = true
-            timerHours.editable = true
-            
-//            performSegueWithIdentifier("alertView", sender: nil)
-            
-//            NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifier", object: nil)
+                if timerCounter != 0 {
 
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "showAlert", userInfo: nil, repeats: true)
-        }
-        else if timerCounter > 0 {
-            timerSeconds.stringValue = "\(timerCounter % 60)"
-            timerMinutes.stringValue = "\((timerCounter / 60) % 60)"
-            timerHours.stringValue = "\((timerCounter / 3600) % 24)"
-            
-            if timerSeconds.stringValue == "0" {
-                timerSeconds.stringValue = "00"
-            }
-            if timerMinutes.stringValue == "0" {
-                timerMinutes.stringValue = "00"
-            }
-            if timerHours.stringValue == "0" {
-                timerHours.stringValue = "00"
+                    startCancelButton.title = "Cancel"
+                    timerIsActive = true
+                    pauseButton.enabled = true
+                    
+                    timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
+                    
+                    
+                    timerSeconds.enabled = false
+                    timerMinutes.enabled = false
+                    timerHours.enabled = false
+                    
+                    timerSeconds.selectable = false
+                    timerMinutes.selectable = false
+                    timerHours.selectable = false
+                }
             }
         }
     }
@@ -157,7 +163,7 @@ class ViewController: NSViewController {
                 
                 timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
                 
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerCountdown", userInfo: nil, repeats: true)
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
                 
                 pauseButton.title = "Pause"
             }
@@ -168,26 +174,25 @@ class ViewController: NSViewController {
     
     func showAlert() {
         
-        --alertCounter
+        alertCounter -= 1
         
         if alertCounter == 0 {
             timer.invalidate()
-            
+            alertCounter = 120
+            alertLabel?.alphaValue = 1
         }
         else if alertLabel?.alphaValue == 0.5 {
             alertLabel.alphaValue = 1
-            alertLabel.textColor = NSColor.greenColor()
         }
         else if alertLabel?.alphaValue == 1 {
             alertLabel.alphaValue = 0.5
-            alertLabel.textColor = NSColor.blueColor()
-
         }
     }
     
     @IBAction func dismissAlert(sender: AnyObject) {
         timer.invalidate()
-        
+        alertCounter = 120
+//        dismissViewController(NSviewcon)
     }
 }
 
