@@ -12,16 +12,43 @@ class ViewController: NSViewController {
 
     var timer = NSTimer()
     var timerCounter = 0
-    var alertCounter = 240
+    let timerCounterInitial = 0
+    var alertCounter = 0
+    let alertCounterInitial = 240
     var timerIsActive = false
     var startButtonHasBeenPressed = false
     var pauseButtonHasBeenPressed = false
+    
+//    Alert sound
+    var alertSound = NSSound(named: "Hero")
+    
+//    Timer view
+    @IBOutlet weak var timeLabel: NSTextField!
+    @IBOutlet weak var startButton: NSButton!
+    @IBOutlet weak var pauseButton: NSButton!
+    @IBOutlet weak var timerSeconds: NSTextField!
+    @IBOutlet weak var timerMinutes: NSTextField!
+    @IBOutlet weak var timerHours: NSTextField!
+//    Alert view
+    @IBOutlet weak var alertLabel: NSTextField!
+    @IBOutlet weak var alertLabelText: NSTextFieldCell!
+    @IBOutlet weak var dismissAlertButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         initializeTimerView()
+        timerCounter = timerCounterInitial
+        alertCounter = alertCounterInitial
+    }
+    
+    override var representedObject: AnyObject? {
+        didSet {
+            // Update the view, if already loaded.
+            
+//            If any text field is being edited or contains values, enable timer colons. Otherwise, disable timer colons.
+        }
     }
     
     func initializeTimerView() {
@@ -38,7 +65,7 @@ class ViewController: NSViewController {
         
         if timerCounter == 0 {
             timer.invalidate()
-            timerCounter = 0
+            timerCounter = timerCounterInitial
             timerSeconds.stringValue = ""
             timerMinutes.stringValue = ""
             timerHours.stringValue = ""
@@ -58,14 +85,12 @@ class ViewController: NSViewController {
             timerMinutes.enabled = true
             timerHours.enabled = true
             
-//            performSegueWithIdentifier("alertView", sender: nil)
-            
-//            NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifier", object: nil)
-            
-            alertLabelText.textColor = NSColor.blackColor()
             revealAlertView()
-            
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(ViewController.showAlert), userInfo: nil, repeats: true)
+//            Start timer alert sound
+            alertSound!.loops = true
+            alertSound!.play()
+//            Timer for alert
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(ViewController.timerAlert), userInfo: nil, repeats: true)
         }
         else if timerCounter > 0 {
             timerSeconds.stringValue = "\(timerCounter % 60)"
@@ -81,18 +106,9 @@ class ViewController: NSViewController {
             if timerHours.stringValue == "0" {
                 timerHours.stringValue = "00"
             }
+//            Exiting the timer window stops the counter
         }
     }
-    
-    @IBOutlet weak var timeLabel: NSTextField!
-    @IBOutlet weak var startButton: NSButton!
-    @IBOutlet weak var pauseButton: NSButton!
-    @IBOutlet weak var timerSeconds: NSTextField!
-    @IBOutlet weak var timerMinutes: NSTextField!
-    @IBOutlet weak var timerHours: NSTextField!
-    @IBOutlet weak var alertLabel: NSTextField!
-    @IBOutlet weak var alertLabelText: NSTextFieldCell!
-    @IBOutlet weak var dismissAlertButton: NSButton!
     
     @IBAction func startTimer(sender: AnyObject) {
         
@@ -103,7 +119,7 @@ class ViewController: NSViewController {
             if timerIsActive == false || pauseButtonHasBeenPressed == true {
                 
                 timer.invalidate()
-                timerCounter = 0
+                timerCounter = timerCounterInitial
                 timerSeconds.stringValue = ""
                 timerMinutes.stringValue = ""
                 timerHours.stringValue = ""
@@ -136,6 +152,7 @@ class ViewController: NSViewController {
                     timerIsActive = true
                     pauseButton.enabled = true
                     
+//                    Timer for timer countdown
                     timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
                     
                     
@@ -151,7 +168,7 @@ class ViewController: NSViewController {
         }
     }
 
-    @IBAction func pauseTimer(sender: AnyObject) {
+    @IBAction func pauseResumeTimer(sender: AnyObject) {
    
         if (timerSeconds.stringValue != "" || timerMinutes.stringValue != "" || timerHours.stringValue != "") && startButtonHasBeenPressed == true {
             
@@ -165,6 +182,7 @@ class ViewController: NSViewController {
                 
                 timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
                 
+//                    Timer for timer countdown
                 timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
                 
                 pauseButton.title = "Pause"
@@ -174,28 +192,39 @@ class ViewController: NSViewController {
         }
     }
     
-    func showAlert() {
+//    Count down until the alert period ends, then stop the alert but do not dismiss the alert view.
+    func timerAlert() {
         
         alertCounter -= 1
         
+        print(alertCounter)
+        
         if alertCounter == 0 {
-            dismissAlert(self)
-        }
-        else if alertLabelText.textColor == NSColor.blackColor() {
-            alertLabelText.textColor = NSColor.redColor()
-        }
-        else if alertLabelText.textColor == NSColor.redColor() {
-            alertLabelText.textColor = NSColor.blackColor()
+            //        Stop alert sound
+            alertSound!.stop()
+            //        End countdown
+            timer.invalidate()
         }
     }
     
     @IBAction func dismissAlert(sender: AnyObject) {
+//        Stop alert sound
+        alertSound!.stop()
+//        Reset countdown
         timer.invalidate()
-        alertCounter = 240
+        alertCounter = alertCounterInitial
         revealTimerView()
     }
     
+//    Should show when switching from Timer view
     func revealAlertView() {
+        
+//        Make sure the window is open and bring the window to the front.
+        self.view.window?.makeKeyAndOrderFront(self)
+        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+//        Disable the window close button.
+        NSApplication.sharedApplication().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSMiniaturizableWindowMask | NSTitledWindowMask
+        
         timerSeconds.hidden = true
         timerMinutes.hidden = true
         timerHours.hidden = true
@@ -208,7 +237,11 @@ class ViewController: NSViewController {
 
     }
     
+//    Should show when switching from Alert view
     func revealTimerView() {
+        
+//        Enable the window close button.
+        NSApplication.sharedApplication().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSClosableWindowMask |  NSMiniaturizableWindowMask | NSTitledWindowMask
         
         timerSeconds.hidden = false
         timerMinutes.hidden = false
@@ -219,6 +252,10 @@ class ViewController: NSViewController {
         
         alertLabel.hidden = true
         dismissAlertButton.hidden = true
+    }
+    
+    func stopTimer() {
+        
     }
 }
 

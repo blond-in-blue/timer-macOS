@@ -26,8 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if !flag{
             
             for window in sender.windows{
-                if let w = window as? NSWindow {
-                    w.makeKeyAndOrderFront(self)
+                if let windowMage = window as? NSWindow {
+                    windowMage.makeKeyAndOrderFront(self)
                 }
             }
         }
