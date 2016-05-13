@@ -11,7 +11,7 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" autoenablesItems="NO" id="AYu-sK-qS6">
                         <items>
                             <menuItem title="Timer" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -61,26 +61,23 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="Start Timer" hidden="YES" enabled="NO" id="Was-JA-tGl">
+                                        <menuItem title="Start or Cancel Timer" id="Pce-GZ-Yr2">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="startTimer:" target="Ady-hI-5gd" id="a5N-ec-ksx"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem title="Cancel Timer" hidden="YES" enabled="NO" alternate="YES" id="IAo-SY-fd9">
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
+                                        <menuItem title="Pause or Resume Timer" enabled="NO" keyEquivalent=" " id="tXI-mr-wws">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Pause Timer" hidden="YES" enabled="NO" keyEquivalent=" " id="tXI-mr-wws">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Resume Timer" hidden="YES" enabled="NO" alternate="YES" keyEquivalent=" " id="DVo-aG-piG">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="pauseResumeTimer:" target="Ady-hI-5gd" id="NfU-mX-0de"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="xBK-Cy-dUb"/>
-                                        <menuItem title="New Timer Window" hidden="YES" enabled="NO" keyEquivalent="n" id="bu9-Gt-waQ">
+                                        <menuItem title="New Timer Window" keyEquivalent="n" id="bu9-Gt-waQ">
                                             <connections>
                                                 <segue destination="B8D-0N-5wS" kind="show" id="HuS-JJ-SkY"/>
                                             </connections>
@@ -106,13 +103,11 @@ DQ
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Float on Top" keyEquivalent="f" id="snW-S8-Cw5">
+                                        <menuItem title="Float on Top" keyEquivalent="f" id="ED0-4n-FQO">
                                             <connections>
-                                                <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="BXY-wc-z0C"/>
+                                                <action selector="toggleFloatWindowOnTop:" target="Ady-hI-5gd" id="uQf-Mf-4eV"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
-                                        <menuItem title="Timer" keyEquivalent="0" id="R4o-n2-Eq4"/>
                                         <menuItem isSeparatorItem="YES" id="aeH-tT-zxm"/>
                                         <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -139,9 +134,29 @@ DQ
                     </menu>
                     <connections>
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                        <outlet property="dockMenu" destination="4u9-Aw-R9e" id="pZJ-4r-CAH"/>
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Timer" customModuleProvider="target"/>
+                <menu title="Dock Menu" autoenablesItems="NO" id="4u9-Aw-R9e" userLabel="Dock Menu">
+                    <items>
+                        <menuItem title="Start or Cancel Timer" id="byu-mp-AkU">
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="startTimer:" target="Ady-hI-5gd" id="dAm-FA-jmm"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Pause or Resume Timer" enabled="NO" keyEquivalent=" " id="3z6-1D-FRW">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="pauseResumeTimer:" target="Ady-hI-5gd" id="Fqu-OZ-LA4"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -221,6 +236,9 @@ DQ
                                     <color key="textColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="0.84530141839999995" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="9BA-Xr-iSm"/>
+                                </connections>
                             </textField>
                             <textField toolTip="Minutes" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RZI-5d-1eG" userLabel="Minutes">
                                 <rect key="frame" x="53" y="36" width="46" height="31"/>
@@ -234,6 +252,9 @@ DQ
                                     <color key="textColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="0.84530141839999995" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="K41-zV-LwC"/>
+                                </connections>
                             </textField>
                             <textField toolTip="Seconds" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U7l-Qt-SaW" userLabel="Seconds">
                                 <rect key="frame" x="99" y="36" width="46" height="31"/>
@@ -247,6 +268,9 @@ DQ
                                     <color key="textColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="0.84530141839999995" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="pYs-bv-Die"/>
+                                </connections>
                             </textField>
                             <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qtV-od-bRT">
                                 <rect key="frame" x="-2" y="32" width="156" height="31"/>

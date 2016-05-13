@@ -6,6 +6,10 @@
 //  Copyright © 2016 Hunter Holder. All rights reserved.
 //
 
+
+// Ideas
+// If any text field is being edited or contains values, enable timer colons. Otherwise, disable timer colons.
+
 import Cocoa
 
 class ViewController: NSViewController {
@@ -33,6 +37,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var alertLabelText: NSTextFieldCell!
     @IBOutlet weak var dismissAlertButton: NSButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,18 +45,6 @@ class ViewController: NSViewController {
         initializeTimerView()
         timerCounter = timerCounterInitial
         alertCounter = alertCounterInitial
-        
-//            If any text field is being edited or contains values, enable timer colons. Otherwise, disable timer colons.
-//        if ((self.view.window?.firstResponder) != nil) || (alertCounter > 0) {
-//            timeLabel.textColor = NSColor(red:0.161, green:0.161, blue:0.161, alpha:1)
-//            timeLabel.textColor = NSColor(red:0.568, green:0.572, blue:0.572, alpha:1)
-//            NSLog("field active")
-//        }
-//        else {
-//            timeLabel.textColor = NSColor(red:0.623, green:0.624, blue:0.623, alpha:1)
-//            NSLog("field inactive")
-//        }
-
     }
     
     override var representedObject: AnyObject? {
@@ -68,7 +61,7 @@ class ViewController: NSViewController {
         pauseButton?.enabled = false
     }
     
-    func timerCountdown() {
+    func timerCountdown(sender: NSObject) {
         
         timerIsActive = true
         timerCounter = timerCounter - 1
@@ -228,6 +221,9 @@ class ViewController: NSViewController {
     }
     
     @IBAction func dismissAlert(sender: AnyObject) {
+        
+        timerIsActive = false
+        
 //        Stop alert sound
         alertSound!.stop()
 //        Reset countdown
@@ -273,9 +269,26 @@ class ViewController: NSViewController {
         alertLabel.hidden = true
         dismissAlertButton.hidden = true
     }
-    
-    func stopTimer() {
+
+    @IBAction func toggleFloatWindowOnTop(sender: NSMenuItem) {
         
+        //self.view.window?.level == sender.state ? Int(CGWindowLevelForKey(.FloatingWindowLevelKey)) : Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
+        
+        if self.view.window?.level == Int(CGWindowLevelForKey(.NormalWindowLevelKey)) {
+            self.view.window!.level =  Int(CGWindowLevelForKey(.MaximumWindowLevelKey))
+        }
+        else {
+            self.view.window?.level = Int(CGWindowLevelForKey(.NormalWindowLevelKey))
+        }
+        
+        if sender.state == 1 {
+            sender.state = 0
+            self.view.window?.title = "Timer"
+        }
+        else {
+            sender.state = 1
+            self.view.window?.title = (self.view.window?.title)! + "        ⍛"
+        }
     }
 }
 
