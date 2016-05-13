@@ -42,12 +42,13 @@ class ViewController: NSViewController {
         alertCounter = alertCounterInitial
         
 //            If any text field is being edited or contains values, enable timer colons. Otherwise, disable timer colons.
-//        if ((self.view.window?.firstResponder) == nil) {
-//            timeLabel.textColor = NSColor(red:0.623, green:0.624, blue:0.623, alpha:1)
+//        if ((self.view.window?.firstResponder) != nil) || (alertCounter > 0) {
+//            timeLabel.textColor = NSColor(red:0.161, green:0.161, blue:0.161, alpha:1)
+//            timeLabel.textColor = NSColor(red:0.568, green:0.572, blue:0.572, alpha:1)
 //            NSLog("field active")
 //        }
 //        else {
-//            timeLabel.textColor = NSColor(red:0.161, green:0.161, blue:0.161, alpha:1)
+//            timeLabel.textColor = NSColor(red:0.623, green:0.624, blue:0.623, alpha:1)
 //            NSLog("field inactive")
 //        }
 

@@ -178,7 +178,7 @@ DQ
                                 <rect key="frame" x="-2" y="28" width="156" height="42"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title=":     :" placeholderString=":     :" usesSingleLineMode="YES" id="bOW-RB-g1s">
                                     <font key="font" metaFont="system" size="30"/>
-                                    <color key="textColor" red="0.16076871749999999" green="0.1607931256" blue="0.1607603729" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.26271244883537292" green="0.2627638578414917" blue="0.26270923018455505" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </textFieldCell>
                             </textField>
