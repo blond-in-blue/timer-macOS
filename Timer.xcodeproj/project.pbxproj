@@ -12,9 +12,7 @@
 		5A69B9451C9B7CD300BA4E3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A69B9431C9B7CD300BA4E3C /* Main.storyboard */; };
 		5A69B9501C9B7CD300BA4E3C /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A69B94F1C9B7CD300BA4E3C /* TimerTests.swift */; };
 		5A69B95B1C9B7CD300BA4E3C /* TimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A69B95A1C9B7CD300BA4E3C /* TimerUITests.swift */; };
-		5A87CC981CE2EE5C00BAB60D /* Sounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A87CC971CE2EE5C00BAB60D /* Sounds.xcassets */; };
 		5A87CC9A1CE2EE8B00BAB60D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A87CC991CE2EE8B00BAB60D /* Assets.xcassets */; };
-		5A87CC9C1CE2EF7100BAB60D /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 5A87CC9B1CE2EF7100BAB60D /* Sounds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,9 +44,7 @@
 		5A69B9561C9B7CD300BA4E3C /* TimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A69B95A1C9B7CD300BA4E3C /* TimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUITests.swift; sourceTree = "<group>"; };
 		5A69B95C1C9B7CD300BA4E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5A87CC971CE2EE5C00BAB60D /* Sounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sounds.xcassets; sourceTree = "<group>"; };
 		5A87CC991CE2EE8B00BAB60D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5A87CC9B1CE2EF7100BAB60D /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +79,6 @@
 				5A69B94E1C9B7CD300BA4E3C /* TimerTests */,
 				5A69B9591C9B7CD300BA4E3C /* TimerUITests */,
 				5A69B93B1C9B7CD300BA4E3C /* Products */,
-				5A87CC9B1CE2EF7100BAB60D /* Sounds */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,7 +98,6 @@
 				5A69B93D1C9B7CD300BA4E3C /* AppDelegate.swift */,
 				5A69B93F1C9B7CD300BA4E3C /* ViewController.swift */,
 				5A87CC991CE2EE8B00BAB60D /* Assets.xcassets */,
-				5A87CC971CE2EE5C00BAB60D /* Sounds.xcassets */,
 				5A69B9431C9B7CD300BA4E3C /* Main.storyboard */,
 				5A69B9461C9B7CD300BA4E3C /* Info.plist */,
 			);
@@ -232,9 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A87CC981CE2EE5C00BAB60D /* Sounds.xcassets in Resources */,
 				5A87CC9A1CE2EE8B00BAB60D /* Assets.xcassets in Resources */,
-				5A87CC9C1CE2EF7100BAB60D /* Sounds in Resources */,
 				5A69B9451C9B7CD300BA4E3C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
