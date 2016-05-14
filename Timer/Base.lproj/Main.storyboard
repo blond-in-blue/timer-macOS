@@ -67,13 +67,22 @@ DQ
 </string>
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="startTimer:" target="Ady-hI-5gd" id="a5N-ec-ksx"/>
+                                                <action selector="startOrCancelTimer:" target="Ady-hI-5gd" id="buZ-XT-434"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Pause or Resume Timer" enabled="NO" keyEquivalent=" " id="tXI-mr-wws">
+                                        <menuItem title="Pause or Resume Timer" enabled="NO" keyEquivalent=" " id="bE9-WP-Cwe">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="pauseResumeTimer:" target="Ady-hI-5gd" id="NfU-mX-0de"/>
+                                                <action selector="pauseOrResumeTimer:" target="Ady-hI-5gd" id="Glt-ob-2rd"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Dismiss Alert" id="OUX-7U-5XT">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                            <connections>
+                                                <action selector="dismissAlert:" target="Ady-hI-5gd" id="1Wz-l0-pfK"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="xBK-Cy-dUb"/>
@@ -138,7 +147,7 @@ DQ
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Timer" customModuleProvider="target"/>
-                <menu title="Dock Menu" autoenablesItems="NO" id="4u9-Aw-R9e" userLabel="Dock Menu">
+                <menu title="Dock Menu" id="4u9-Aw-R9e" userLabel="Dock Menu">
                     <items>
                         <menuItem title="Start or Cancel Timer" id="byu-mp-AkU">
                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -146,13 +155,22 @@ DQ
 </string>
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="startTimer:" target="Ady-hI-5gd" id="dAm-FA-jmm"/>
+                                <action selector="startOrCancelTimer:" target="Ady-hI-5gd" id="Wll-P3-JzX"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Pause or Resume Timer" enabled="NO" keyEquivalent=" " id="3z6-1D-FRW">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="pauseResumeTimer:" target="Ady-hI-5gd" id="Fqu-OZ-LA4"/>
+                                <action selector="pauseOrResumeTimer:" target="Ady-hI-5gd" id="LCj-uN-gNE"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Dismiss Alert" id="pJ9-dx-y1z">
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                            <connections>
+                                <action selector="dismissAlert:" target="Ady-hI-5gd" id="XlN-lz-VN6"/>
                             </connections>
                         </menuItem>
                     </items>
@@ -169,7 +187,7 @@ DQ
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES"/>
                         <rect key="contentRect" x="313" y="676" width="152" height="70"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <value key="minSize" type="size" width="152" height="70"/>
                         <value key="maxSize" type="size" width="152" height="70"/>
                     </window>
@@ -200,14 +218,14 @@ DQ
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eIr-Kq-WML">
                                 <rect key="frame" x="9" y="4" width="64" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="3ut-2q-uUD"/>
+                                    <constraint firstAttribute="width" constant="64" id="aaK-fO-3Ri"/>
                                 </constraints>
                                 <buttonCell key="cell" type="roundTextured" title="Pause" alternateTitle="Resume" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tb0-o5-gtA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="pauseResumeTimer:" target="TJ9-HD-c9B" id="fwl-ud-oyC"/>
+                                    <action selector="pauseOrResumeTimer:" target="TJ9-HD-c9B" id="XUX-WG-om0"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UAZ-v6-4X6">
@@ -217,15 +235,11 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="SIt-Ir-gvE"/>
+                                    <action selector="startOrCancelTimer:" target="TJ9-HD-c9B" id="Eqq-Lx-x1U"/>
                                 </connections>
                             </button>
-                            <textField toolTip="Hours" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-Kb-7Vl" userLabel="Hours">
+                            <textField toolTip="Hours" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-Kb-7Vl" userLabel="Hours Field">
                                 <rect key="frame" x="7" y="36" width="46" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="8tN-Kw-7RC"/>
-                                    <constraint firstAttribute="height" constant="31" id="lKW-m3-kRs"/>
-                                </constraints>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="4m3-d1-67I">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="wRD-3H-SX0">
                                         <integer key="multiplier" value="1"/>
@@ -237,10 +251,10 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="9BA-Xr-iSm"/>
+                                    <action selector="startOrCancelTimer:" target="TJ9-HD-c9B" id="5OL-bU-k0H"/>
                                 </connections>
                             </textField>
-                            <textField toolTip="Minutes" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RZI-5d-1eG" userLabel="Minutes">
+                            <textField toolTip="Minutes" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZI-5d-1eG" userLabel="Minutes Field">
                                 <rect key="frame" x="53" y="36" width="46" height="31"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="qtf-g4-IG8">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="Az1-kw-MP5">
@@ -253,10 +267,10 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="K41-zV-LwC"/>
+                                    <action selector="startOrCancelTimer:" target="TJ9-HD-c9B" id="Xd9-gx-dxQ"/>
                                 </connections>
                             </textField>
-                            <textField toolTip="Seconds" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U7l-Qt-SaW" userLabel="Seconds">
+                            <textField toolTip="Seconds" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7l-Qt-SaW" userLabel="Seconds Field">
                                 <rect key="frame" x="99" y="36" width="46" height="31"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="gXD-4W-ALP">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="c98-LM-Ed1">
@@ -269,64 +283,76 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="startTimer:" target="TJ9-HD-c9B" id="pYs-bv-Die"/>
+                                    <action selector="startOrCancelTimer:" target="TJ9-HD-c9B" id="6in-VE-c93"/>
                                 </connections>
                             </textField>
-                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qtV-od-bRT">
-                                <rect key="frame" x="-2" y="32" width="156" height="31"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="Timer Done" usesSingleLineMode="YES" id="mGB-qs-W0I">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOV-QY-7Tt">
+                                <rect key="frame" x="-2" y="30" width="156" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="BGD-At-HiI"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="Timer Done" usesSingleLineMode="YES" id="pL6-ei-8CB">
                                     <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" red="0.16076871749999999" green="0.1607931256" blue="0.1607603729" alpha="0.8474530347" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-nW-Nsf">
-                                <rect key="frame" x="39" y="0.0" width="74" height="32"/>
+                            <button hidden="YES" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5wn-gE-tBJ">
+                                <rect key="frame" x="39" y="-1" width="74" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="62" id="PDI-X7-Olb"/>
+                                    <constraint firstAttribute="width" constant="62" id="ReX-f4-tbo"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Dismiss" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nsh-cS-480">
+                                <buttonCell key="cell" type="push" title="Dismiss" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KQb-OI-X3m">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="dismissAlert:" target="TJ9-HD-c9B" id="Oij-Ab-kJt"/>
+                                    <action selector="dismissAlert:" target="TJ9-HD-c9B" id="rt7-zQ-S2G"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7FZ-dC-Wgo">
+                                <rect key="frame" x="142" y="-6" width="13" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="•" id="DJy-WT-iad">
+                                    <font key="font" metaFont="system" size="8"/>
+                                    <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="baseline" secondItem="RZI-5d-1eG" secondAttribute="baseline" id="2WT-dR-CSm"/>
-                            <constraint firstItem="KwM-d1-EfW" firstAttribute="leading" secondItem="qtV-od-bRT" secondAttribute="leading" id="HjM-EE-J5l"/>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="firstBaseline" secondItem="qtV-od-bRT" secondAttribute="baseline" id="Mg8-hN-dRG"/>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" constant="9" id="N48-6e-cff"/>
-                            <constraint firstItem="qtV-od-bRT" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="7" id="NAe-7w-ilA"/>
-                            <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="KwM-d1-EfW" secondAttribute="bottom" id="NJl-u6-RtJ"/>
-                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="top" secondItem="3kM-nW-Nsf" secondAttribute="top" id="PxY-3m-MlZ"/>
-                            <constraint firstItem="KwM-d1-EfW" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" id="QhR-Qo-NZa"/>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="3" id="XzC-76-74s"/>
-                            <constraint firstItem="U7l-Qt-SaW" firstAttribute="leading" secondItem="RZI-5d-1eG" secondAttribute="trailing" constant="4" id="YBG-v6-ef2"/>
-                            <constraint firstItem="RZI-5d-1eG" firstAttribute="leading" secondItem="m5U-Kb-7Vl" secondAttribute="trailing" constant="4" id="aSE-Pm-0zD"/>
-                            <constraint firstItem="RZI-5d-1eG" firstAttribute="baseline" secondItem="U7l-Qt-SaW" secondAttribute="baseline" id="arC-g5-WOh"/>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="leading" id="bmL-Dr-oEg"/>
-                            <constraint firstItem="eIr-Kq-WML" firstAttribute="baseline" secondItem="UAZ-v6-4X6" secondAttribute="firstBaseline" id="cQV-lk-jKd"/>
-                            <constraint firstAttribute="trailing" secondItem="UAZ-v6-4X6" secondAttribute="trailing" constant="10" id="dWb-mU-ifb"/>
-                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="baseline" secondItem="eIr-Kq-WML" secondAttribute="firstBaseline" id="dhQ-yZ-B6N"/>
-                            <constraint firstItem="3kM-nW-Nsf" firstAttribute="top" secondItem="m5U-Kb-7Vl" secondAttribute="bottom" constant="8" symbolic="YES" id="eCN-NY-R98"/>
-                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="trailing" constant="5" id="fJc-oD-h4y"/>
-                            <constraint firstItem="qtV-od-bRT" firstAttribute="centerX" secondItem="3kM-nW-Nsf" secondAttribute="centerX" id="ihD-2X-AeD"/>
-                            <constraint firstAttribute="trailing" secondItem="KwM-d1-EfW" secondAttribute="trailing" id="kuj-dM-1Yo"/>
-                            <constraint firstItem="U7l-Qt-SaW" firstAttribute="firstBaseline" secondItem="qtV-od-bRT" secondAttribute="baseline" id="ln8-ee-rao"/>
-                            <constraint firstItem="RZI-5d-1eG" firstAttribute="firstBaseline" secondItem="qtV-od-bRT" secondAttribute="baseline" id="oZ1-PA-i6L"/>
-                            <constraint firstItem="RZI-5d-1eG" firstAttribute="centerX" secondItem="qtV-od-bRT" secondAttribute="centerX" id="sNj-Yq-Zya"/>
-                            <constraint firstAttribute="trailing" secondItem="U7l-Qt-SaW" secondAttribute="trailing" constant="9" id="wqC-it-xd5"/>
-                            <constraint firstItem="KwM-d1-EfW" firstAttribute="trailing" secondItem="qtV-od-bRT" secondAttribute="trailing" id="ycm-5v-yic"/>
-                            <constraint firstItem="KwM-d1-EfW" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" id="zBR-Dx-hG1"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" constant="9" id="26H-Ow-U39"/>
+                            <constraint firstAttribute="trailing" secondItem="KwM-d1-EfW" secondAttribute="trailing" id="2VD-5E-ADd"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="firstBaseline" secondItem="RZI-5d-1eG" secondAttribute="firstBaseline" id="2rX-lA-KVF"/>
+                            <constraint firstAttribute="trailing" secondItem="UAZ-v6-4X6" secondAttribute="trailing" constant="10" id="3k6-rv-TQl"/>
+                            <constraint firstItem="RZI-5d-1eG" firstAttribute="centerX" secondItem="KwM-d1-EfW" secondAttribute="centerX" id="5Df-dn-7Sw"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="leading" id="5fv-BD-QCn"/>
+                            <constraint firstItem="KwM-d1-EfW" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" id="6Uw-5k-ucj"/>
+                            <constraint firstItem="KwM-d1-EfW" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" id="Dpx-Us-Rl5"/>
+                            <constraint firstItem="eIr-Kq-WML" firstAttribute="baseline" secondItem="UAZ-v6-4X6" secondAttribute="baseline" id="IgX-lG-0md"/>
+                            <constraint firstItem="RZI-5d-1eG" firstAttribute="leading" secondItem="m5U-Kb-7Vl" secondAttribute="trailing" constant="4" id="Kc0-SQ-ds7"/>
+                            <constraint firstAttribute="trailing" secondItem="U7l-Qt-SaW" secondAttribute="trailing" constant="9" id="Lng-ro-Jva"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="baseline" secondItem="RZI-5d-1eG" secondAttribute="baseline" id="OJR-ke-W0f"/>
+                            <constraint firstItem="RZI-5d-1eG" firstAttribute="baseline" secondItem="U7l-Qt-SaW" secondAttribute="baseline" id="Psu-Uh-cNM"/>
+                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="trailing" constant="5" id="UHi-DM-BqV"/>
+                            <constraint firstItem="7FZ-dC-Wgo" firstAttribute="top" secondItem="KwM-d1-EfW" secondAttribute="bottom" constant="17" id="UVm-Oo-c0z"/>
+                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="baseline" secondItem="eIr-Kq-WML" secondAttribute="firstBaseline" id="Uz2-P7-Snl"/>
+                            <constraint firstAttribute="bottom" secondItem="7FZ-dC-Wgo" secondAttribute="bottom" constant="-6" id="VJp-CJ-R6l"/>
+                            <constraint firstItem="RZI-5d-1eG" firstAttribute="firstBaseline" secondItem="U7l-Qt-SaW" secondAttribute="firstBaseline" id="aDB-cc-DU1"/>
+                            <constraint firstItem="oOV-QY-7Tt" firstAttribute="centerX" secondItem="5wn-gE-tBJ" secondAttribute="centerX" id="hyX-lO-cd7"/>
+                            <constraint firstItem="U7l-Qt-SaW" firstAttribute="leading" secondItem="RZI-5d-1eG" secondAttribute="trailing" constant="4" id="i2J-vM-joH"/>
+                            <constraint firstItem="7FZ-dC-Wgo" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="59" id="kDO-Uu-0lw"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="3" id="ky6-mf-Auh"/>
+                            <constraint firstAttribute="bottom" secondItem="eIr-Kq-WML" secondAttribute="bottom" constant="6" id="omR-mc-0h6"/>
+                            <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="KwM-d1-EfW" secondAttribute="bottom" id="qUN-TG-7IX"/>
+                            <constraint firstItem="5wn-gE-tBJ" firstAttribute="top" secondItem="oOV-QY-7Tt" secondAttribute="bottom" constant="4" id="tgf-9Q-ume"/>
+                            <constraint firstItem="7FZ-dC-Wgo" firstAttribute="leading" secondItem="UAZ-v6-4X6" secondAttribute="trailing" constant="2" id="v6K-sH-qTc"/>
+                            <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="m5U-Kb-7Vl" secondAttribute="bottom" constant="8" symbolic="YES" id="wyS-9R-hwy"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="alertLabel" destination="qtV-od-bRT" id="skN-YH-NP9"/>
-                        <outlet property="alertLabelText" destination="mGB-qs-W0I" id="a45-8X-lde"/>
-                        <outlet property="dismissAlertButton" destination="3kM-nW-Nsf" id="rkC-dX-sml"/>
+                        <outlet property="alertLabel" destination="oOV-QY-7Tt" id="7lB-mC-6a1"/>
+                        <outlet property="dismissAlertButton" destination="5wn-gE-tBJ" id="64V-k4-ozM"/>
+                        <outlet property="floatingStatusLabel" destination="7FZ-dC-Wgo" id="Zeo-ia-lJn"/>
                         <outlet property="pauseButton" destination="eIr-Kq-WML" id="Vst-37-2JL"/>
                         <outlet property="startButton" destination="UAZ-v6-4X6" id="gyp-IV-3Dw"/>
                         <outlet property="timeLabel" destination="KwM-d1-EfW" id="AAv-om-jwQ"/>
