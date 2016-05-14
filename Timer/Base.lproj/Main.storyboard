@@ -203,11 +203,11 @@ DQ
         <scene sceneID="fs6-xW-jhR">
             <objects>
                 <viewController storyboardIdentifier="timerView" id="TJ9-HD-c9B" customClass="ViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="ESG-M4-AfU">
+                    <view key="view" id="ESG-M4-AfU">
                         <rect key="frame" x="0.0" y="0.0" width="152" height="70"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwM-d1-EfW">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KwM-d1-EfW">
                                 <rect key="frame" x="-2" y="28" width="156" height="42"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title=":     :" placeholderString=":     :" usesSingleLineMode="YES" id="bOW-RB-g1s">
                                     <font key="font" metaFont="system" size="30"/>
@@ -218,7 +218,7 @@ DQ
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eIr-Kq-WML">
                                 <rect key="frame" x="9" y="4" width="64" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="aaK-fO-3Ri"/>
+                                    <constraint firstAttribute="width" constant="64" id="0UN-qs-haa"/>
                                 </constraints>
                                 <buttonCell key="cell" type="roundTextured" title="Pause" alternateTitle="Resume" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tb0-o5-gtA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -238,8 +238,12 @@ DQ
                                     <action selector="startOrCancelTimer:" target="TJ9-HD-c9B" id="Eqq-Lx-x1U"/>
                                 </connections>
                             </button>
-                            <textField toolTip="Hours" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-Kb-7Vl" userLabel="Hours Field">
+                            <textField toolTip="Hours" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-Kb-7Vl" userLabel="Hours Field">
                                 <rect key="frame" x="7" y="36" width="46" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="2yH-RQ-eCJ"/>
+                                    <constraint firstAttribute="height" constant="31" id="w5K-qc-8fB"/>
+                                </constraints>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="4m3-d1-67I">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="wRD-3H-SX0">
                                         <integer key="multiplier" value="1"/>
@@ -254,8 +258,11 @@ DQ
                                     <action selector="startOrCancelTimer:" target="TJ9-HD-c9B" id="5OL-bU-k0H"/>
                                 </connections>
                             </textField>
-                            <textField toolTip="Minutes" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZI-5d-1eG" userLabel="Minutes Field">
+                            <textField toolTip="Minutes" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RZI-5d-1eG" userLabel="Minutes Field">
                                 <rect key="frame" x="53" y="36" width="46" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="edK-R8-JED"/>
+                                </constraints>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="qtf-g4-IG8">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="Az1-kw-MP5">
                                         <integer key="multiplier" value="1"/>
@@ -270,7 +277,7 @@ DQ
                                     <action selector="startOrCancelTimer:" target="TJ9-HD-c9B" id="Xd9-gx-dxQ"/>
                                 </connections>
                             </textField>
-                            <textField toolTip="Seconds" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7l-Qt-SaW" userLabel="Seconds Field">
+                            <textField toolTip="Seconds" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U7l-Qt-SaW" userLabel="Seconds Field">
                                 <rect key="frame" x="99" y="36" width="46" height="31"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="center" placeholderString="00" usesSingleLineMode="YES" id="gXD-4W-ALP">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" paddingCharacter="00" formatWidth="2" roundingMode="down" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="2" id="c98-LM-Ed1">
@@ -286,22 +293,16 @@ DQ
                                     <action selector="startOrCancelTimer:" target="TJ9-HD-c9B" id="6in-VE-c93"/>
                                 </connections>
                             </textField>
-                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOV-QY-7Tt">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oOV-QY-7Tt">
                                 <rect key="frame" x="-2" y="30" width="156" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="BGD-At-HiI"/>
-                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="Timer Done" usesSingleLineMode="YES" id="pL6-ei-8CB">
                                     <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" red="0.16076871749999999" green="0.1607931256" blue="0.1607603729" alpha="0.8474530347" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button hidden="YES" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5wn-gE-tBJ">
+                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5wn-gE-tBJ">
                                 <rect key="frame" x="39" y="-1" width="74" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="62" id="ReX-f4-tbo"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" title="Dismiss" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KQb-OI-X3m">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -312,29 +313,32 @@ DQ
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" constant="9" id="26H-Ow-U39"/>
-                            <constraint firstAttribute="trailing" secondItem="KwM-d1-EfW" secondAttribute="trailing" id="2VD-5E-ADd"/>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="firstBaseline" secondItem="RZI-5d-1eG" secondAttribute="firstBaseline" id="2rX-lA-KVF"/>
-                            <constraint firstAttribute="trailing" secondItem="UAZ-v6-4X6" secondAttribute="trailing" constant="10" id="3k6-rv-TQl"/>
-                            <constraint firstItem="RZI-5d-1eG" firstAttribute="centerX" secondItem="KwM-d1-EfW" secondAttribute="centerX" id="5Df-dn-7Sw"/>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="leading" id="5fv-BD-QCn"/>
-                            <constraint firstItem="KwM-d1-EfW" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" id="6Uw-5k-ucj"/>
-                            <constraint firstItem="KwM-d1-EfW" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" id="Dpx-Us-Rl5"/>
-                            <constraint firstItem="eIr-Kq-WML" firstAttribute="baseline" secondItem="UAZ-v6-4X6" secondAttribute="baseline" id="IgX-lG-0md"/>
-                            <constraint firstItem="RZI-5d-1eG" firstAttribute="leading" secondItem="m5U-Kb-7Vl" secondAttribute="trailing" constant="4" id="Kc0-SQ-ds7"/>
-                            <constraint firstAttribute="trailing" secondItem="U7l-Qt-SaW" secondAttribute="trailing" constant="9" id="Lng-ro-Jva"/>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="baseline" secondItem="RZI-5d-1eG" secondAttribute="baseline" id="OJR-ke-W0f"/>
-                            <constraint firstItem="RZI-5d-1eG" firstAttribute="baseline" secondItem="U7l-Qt-SaW" secondAttribute="baseline" id="Psu-Uh-cNM"/>
-                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="trailing" constant="5" id="UHi-DM-BqV"/>
-                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="baseline" secondItem="eIr-Kq-WML" secondAttribute="firstBaseline" id="Uz2-P7-Snl"/>
-                            <constraint firstItem="RZI-5d-1eG" firstAttribute="firstBaseline" secondItem="U7l-Qt-SaW" secondAttribute="firstBaseline" id="aDB-cc-DU1"/>
-                            <constraint firstItem="oOV-QY-7Tt" firstAttribute="centerX" secondItem="5wn-gE-tBJ" secondAttribute="centerX" id="hyX-lO-cd7"/>
-                            <constraint firstItem="U7l-Qt-SaW" firstAttribute="leading" secondItem="RZI-5d-1eG" secondAttribute="trailing" constant="4" id="i2J-vM-joH"/>
-                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="3" id="ky6-mf-Auh"/>
-                            <constraint firstAttribute="bottom" secondItem="eIr-Kq-WML" secondAttribute="bottom" constant="6" id="omR-mc-0h6"/>
-                            <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="KwM-d1-EfW" secondAttribute="bottom" id="qUN-TG-7IX"/>
-                            <constraint firstItem="5wn-gE-tBJ" firstAttribute="top" secondItem="oOV-QY-7Tt" secondAttribute="bottom" constant="4" id="tgf-9Q-ume"/>
-                            <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="m5U-Kb-7Vl" secondAttribute="bottom" constant="8" symbolic="YES" id="wyS-9R-hwy"/>
+                            <constraint firstItem="oOV-QY-7Tt" firstAttribute="firstBaseline" secondItem="U7l-Qt-SaW" secondAttribute="firstBaseline" id="23j-Xl-dhc"/>
+                            <constraint firstItem="oOV-QY-7Tt" firstAttribute="leading" secondItem="KwM-d1-EfW" secondAttribute="leading" id="51n-Ah-BvV"/>
+                            <constraint firstItem="5wn-gE-tBJ" firstAttribute="top" secondItem="KwM-d1-EfW" secondAttribute="bottom" constant="1" id="8Kf-0z-swL"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="baseline" secondItem="RZI-5d-1eG" secondAttribute="baseline" id="EVA-Nt-jRA"/>
+                            <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="m5U-Kb-7Vl" secondAttribute="bottom" constant="8" symbolic="YES" id="FWR-wr-naD"/>
+                            <constraint firstItem="5wn-gE-tBJ" firstAttribute="baseline" secondItem="UAZ-v6-4X6" secondAttribute="firstBaseline" id="Hpp-og-vTZ"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" constant="9" id="MWB-9u-Fgd"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="leading" id="NZo-ps-PMD"/>
+                            <constraint firstItem="5wn-gE-tBJ" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" constant="45" id="QPc-U7-6Zl"/>
+                            <constraint firstItem="RZI-5d-1eG" firstAttribute="leading" secondItem="m5U-Kb-7Vl" secondAttribute="trailing" constant="4" id="RwV-DA-Z9C"/>
+                            <constraint firstAttribute="trailing" secondItem="UAZ-v6-4X6" secondAttribute="trailing" constant="10" id="S0e-MI-WsK"/>
+                            <constraint firstItem="oOV-QY-7Tt" firstAttribute="centerX" secondItem="5wn-gE-tBJ" secondAttribute="centerX" id="TX9-Ft-sQY"/>
+                            <constraint firstItem="RZI-5d-1eG" firstAttribute="centerX" secondItem="oOV-QY-7Tt" secondAttribute="centerX" id="acW-V2-aRc"/>
+                            <constraint firstItem="RZI-5d-1eG" firstAttribute="firstBaseline" secondItem="U7l-Qt-SaW" secondAttribute="firstBaseline" id="d46-Uu-OmH"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="3" id="dfm-tn-gQ6"/>
+                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="baseline" secondItem="5wn-gE-tBJ" secondAttribute="firstBaseline" id="hgV-al-8jg"/>
+                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="top" secondItem="oOV-QY-7Tt" secondAttribute="bottom" constant="2" id="kmQ-hi-U9X"/>
+                            <constraint firstItem="5wn-gE-tBJ" firstAttribute="baseline" secondItem="eIr-Kq-WML" secondAttribute="firstBaseline" id="lNC-xl-ejf"/>
+                            <constraint firstItem="oOV-QY-7Tt" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" id="lYu-3O-xgU"/>
+                            <constraint firstAttribute="trailing" secondItem="U7l-Qt-SaW" secondAttribute="trailing" constant="9" id="mJV-hT-avK"/>
+                            <constraint firstItem="KwM-d1-EfW" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" id="nJd-7g-Zcg"/>
+                            <constraint firstItem="UAZ-v6-4X6" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="trailing" constant="5" id="nZL-DF-SdS"/>
+                            <constraint firstItem="oOV-QY-7Tt" firstAttribute="trailing" secondItem="KwM-d1-EfW" secondAttribute="trailing" id="sSZ-0P-twP"/>
+                            <constraint firstItem="RZI-5d-1eG" firstAttribute="baseline" secondItem="U7l-Qt-SaW" secondAttribute="baseline" id="sWv-pf-Nt3"/>
+                            <constraint firstItem="U7l-Qt-SaW" firstAttribute="leading" secondItem="RZI-5d-1eG" secondAttribute="trailing" constant="4" id="uXA-hK-e4H"/>
+                            <constraint firstItem="m5U-Kb-7Vl" firstAttribute="firstBaseline" secondItem="RZI-5d-1eG" secondAttribute="firstBaseline" id="wLu-hs-ybv"/>
                         </constraints>
                     </view>
                     <connections>
