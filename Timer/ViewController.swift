@@ -305,11 +305,9 @@ class ViewController: NSViewController {
         
         if sender.state == 1 {
             sender.state = 0
-            floatingStatusLabel.textColor = NSColor.tertiaryLabelColor()
         }
         else {
             sender.state = 1
-            floatingStatusLabel.textColor = NSColor(red:0.359, green:0.624, blue:0.949, alpha:1)
         }
     }
 }

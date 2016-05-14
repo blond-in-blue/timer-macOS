@@ -203,11 +203,11 @@ DQ
         <scene sceneID="fs6-xW-jhR">
             <objects>
                 <viewController storyboardIdentifier="timerView" id="TJ9-HD-c9B" customClass="ViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="ESG-M4-AfU">
+                    <view key="view" misplaced="YES" id="ESG-M4-AfU">
                         <rect key="frame" x="0.0" y="0.0" width="152" height="70"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KwM-d1-EfW">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwM-d1-EfW">
                                 <rect key="frame" x="-2" y="28" width="156" height="42"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title=":     :" placeholderString=":     :" usesSingleLineMode="YES" id="bOW-RB-g1s">
                                     <font key="font" metaFont="system" size="30"/>
@@ -310,14 +310,6 @@ DQ
                                     <action selector="dismissAlert:" target="TJ9-HD-c9B" id="rt7-zQ-S2G"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7FZ-dC-Wgo">
-                                <rect key="frame" x="142" y="-6" width="13" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="•" id="DJy-WT-iad">
-                                    <font key="font" metaFont="system" size="8"/>
-                                    <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="m5U-Kb-7Vl" firstAttribute="leading" secondItem="ESG-M4-AfU" secondAttribute="leading" constant="9" id="26H-Ow-U39"/>
@@ -334,25 +326,20 @@ DQ
                             <constraint firstItem="m5U-Kb-7Vl" firstAttribute="baseline" secondItem="RZI-5d-1eG" secondAttribute="baseline" id="OJR-ke-W0f"/>
                             <constraint firstItem="RZI-5d-1eG" firstAttribute="baseline" secondItem="U7l-Qt-SaW" secondAttribute="baseline" id="Psu-Uh-cNM"/>
                             <constraint firstItem="UAZ-v6-4X6" firstAttribute="leading" secondItem="eIr-Kq-WML" secondAttribute="trailing" constant="5" id="UHi-DM-BqV"/>
-                            <constraint firstItem="7FZ-dC-Wgo" firstAttribute="top" secondItem="KwM-d1-EfW" secondAttribute="bottom" constant="17" id="UVm-Oo-c0z"/>
                             <constraint firstItem="UAZ-v6-4X6" firstAttribute="baseline" secondItem="eIr-Kq-WML" secondAttribute="firstBaseline" id="Uz2-P7-Snl"/>
-                            <constraint firstAttribute="bottom" secondItem="7FZ-dC-Wgo" secondAttribute="bottom" constant="-6" id="VJp-CJ-R6l"/>
                             <constraint firstItem="RZI-5d-1eG" firstAttribute="firstBaseline" secondItem="U7l-Qt-SaW" secondAttribute="firstBaseline" id="aDB-cc-DU1"/>
                             <constraint firstItem="oOV-QY-7Tt" firstAttribute="centerX" secondItem="5wn-gE-tBJ" secondAttribute="centerX" id="hyX-lO-cd7"/>
                             <constraint firstItem="U7l-Qt-SaW" firstAttribute="leading" secondItem="RZI-5d-1eG" secondAttribute="trailing" constant="4" id="i2J-vM-joH"/>
-                            <constraint firstItem="7FZ-dC-Wgo" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="59" id="kDO-Uu-0lw"/>
                             <constraint firstItem="m5U-Kb-7Vl" firstAttribute="top" secondItem="ESG-M4-AfU" secondAttribute="top" constant="3" id="ky6-mf-Auh"/>
                             <constraint firstAttribute="bottom" secondItem="eIr-Kq-WML" secondAttribute="bottom" constant="6" id="omR-mc-0h6"/>
                             <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="KwM-d1-EfW" secondAttribute="bottom" id="qUN-TG-7IX"/>
                             <constraint firstItem="5wn-gE-tBJ" firstAttribute="top" secondItem="oOV-QY-7Tt" secondAttribute="bottom" constant="4" id="tgf-9Q-ume"/>
-                            <constraint firstItem="7FZ-dC-Wgo" firstAttribute="leading" secondItem="UAZ-v6-4X6" secondAttribute="trailing" constant="2" id="v6K-sH-qTc"/>
                             <constraint firstItem="eIr-Kq-WML" firstAttribute="top" secondItem="m5U-Kb-7Vl" secondAttribute="bottom" constant="8" symbolic="YES" id="wyS-9R-hwy"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="alertLabel" destination="oOV-QY-7Tt" id="7lB-mC-6a1"/>
                         <outlet property="dismissAlertButton" destination="5wn-gE-tBJ" id="64V-k4-ozM"/>
-                        <outlet property="floatingStatusLabel" destination="7FZ-dC-Wgo" id="Zeo-ia-lJn"/>
                         <outlet property="pauseButton" destination="eIr-Kq-WML" id="Vst-37-2JL"/>
                         <outlet property="startButton" destination="UAZ-v6-4X6" id="gyp-IV-3Dw"/>
                         <outlet property="timeLabel" destination="KwM-d1-EfW" id="AAv-om-jwQ"/>
