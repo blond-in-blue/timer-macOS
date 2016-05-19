@@ -114,20 +114,24 @@ class ViewController: NSViewController {
             NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         }
         else if timerCounter > 0 {
-            timerSeconds.stringValue = "\(timerCounter % 60)"
-            timerMinutes.stringValue = "\((timerCounter / 60) % 60)"
-            timerHours.stringValue = "\((timerCounter / 3600) % 24)"
-            
-            if timerSeconds.stringValue == "0" {
-                timerSeconds.stringValue = "00"
-            }
-            if timerMinutes.stringValue == "0" {
-                timerMinutes.stringValue = "00"
-            }
-            if timerHours.stringValue == "0" {
-                timerHours.stringValue = "00"
-            }
-//            Exiting the timer window stops the counter
+            displayCountdownValues()
+            //            Exiting the timer window stops the counter
+        }
+    }
+    
+    func displayCountdownValues() {
+        timerSeconds.stringValue = "\(timerCounter % 60)"
+        timerMinutes.stringValue = "\((timerCounter / 60) % 60)"
+        timerHours.stringValue = "\((timerCounter / 3600) % 24)"
+        
+        if timerSeconds.stringValue == "0" {
+            timerSeconds.stringValue = "00"
+        }
+        if timerMinutes.stringValue == "0" {
+            timerMinutes.stringValue = "00"
+        }
+        if timerHours.stringValue == "0" {
+            timerHours.stringValue = "00"
         }
     }
     
@@ -160,21 +164,8 @@ class ViewController: NSViewController {
             timerIsActive = true
             pauseButton.enabled = true
             
-            timerSeconds.stringValue = "\(timerCounter % 60)"
-            timerMinutes.stringValue = "\((timerCounter / 60) % 60)"
-            timerHours.stringValue = "\((timerCounter / 3600) % 24)"
-            
-            if timerSeconds.stringValue == "0" {
-                timerSeconds.stringValue = "00"
-            }
-            if timerMinutes.stringValue == "0" {
-                timerMinutes.stringValue = "00"
-            }
-            if timerHours.stringValue == "0" {
-                timerHours.stringValue = "00"
-            }
-            
-            //                    Timer for timer countdown
+            displayCountdownValues()
+//            Timer for timer countdown
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
             NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
             
@@ -297,7 +288,7 @@ class ViewController: NSViewController {
         //self.view.window?.level == sender.state ? Int(CGWindowLevelForKey(.FloatingWindowLevelKey)) : Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
         
         if self.view.window?.level == Int(CGWindowLevelForKey(.NormalWindowLevelKey)) {
-            self.view.window!.level =  Int(CGWindowLevelForKey(.MaximumWindowLevelKey))
+            self.view.window!.level =  Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
         }
         else {
             self.view.window?.level = Int(CGWindowLevelForKey(.NormalWindowLevelKey))

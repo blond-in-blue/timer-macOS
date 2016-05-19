@@ -99,9 +99,17 @@ DQ
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" hidden="YES" enabled="NO" id="H8h-7b-M4v">
+                            <menuItem title="View" id="H8h-7b-M4v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="View" id="HyV-fh-RgO"/>
+                                <menu key="submenu" title="View" id="HyV-fh-RgO">
+                                    <items>
+                                        <menuItem title="Float on Top" keyEquivalent="f" id="ED0-4n-FQO">
+                                            <connections>
+                                                <action selector="toggleFloatWindowOnTop:" target="Ady-hI-5gd" id="uQf-Mf-4eV"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -110,11 +118,6 @@ DQ
                                         <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
                                             <connections>
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Float on Top" keyEquivalent="f" id="ED0-4n-FQO">
-                                            <connections>
-                                                <action selector="toggleFloatWindowOnTop:" target="Ady-hI-5gd" id="uQf-Mf-4eV"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="aeH-tT-zxm"/>
@@ -143,38 +146,9 @@ DQ
                     </menu>
                     <connections>
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
-                        <outlet property="dockMenu" destination="4u9-Aw-R9e" id="pZJ-4r-CAH"/>
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Timer" customModuleProvider="target"/>
-                <menu title="Dock Menu" id="4u9-Aw-R9e" userLabel="Dock Menu">
-                    <items>
-                        <menuItem title="Start or Cancel Timer" id="byu-mp-AkU">
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="startOrCancelTimer:" target="Ady-hI-5gd" id="Wll-P3-JzX"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Pause or Resume Timer" enabled="NO" keyEquivalent=" " id="3z6-1D-FRW">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="pauseOrResumeTimer:" target="Ady-hI-5gd" id="LCj-uN-gNE"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Dismiss Alert" id="pJ9-dx-y1z">
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
-                            <connections>
-                                <action selector="dismissAlert:" target="Ady-hI-5gd" id="XlN-lz-VN6"/>
-                            </connections>
-                        </menuItem>
-                    </items>
-                </menu>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
