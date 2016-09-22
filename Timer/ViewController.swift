@@ -46,7 +46,7 @@ class ViewController: NSViewController {
         timerCounter = timerCounterInitial
         alertCounter = alertCounterInitial
     }
-        
+    
     func initializeTimerView() {
         timerIsActive = false
         startButtonHasBeenPressed = false
@@ -68,7 +68,6 @@ class ViewController: NSViewController {
         timerSeconds.isEditable = true
         timerMinutes.isEditable = true
         timerHours.isEditable = true
-
     }
     
     func timerCountdown(_ sender: NSObject) {
@@ -246,7 +245,7 @@ class ViewController: NSViewController {
         self.view.window?.makeKeyAndOrderFront(self)
         NSApplication.shared().activate(ignoringOtherApps: true)
 //        Disable the window close button.
-        self.view.window!.standardWindowButton(NSWindowButton.closeButton)!.isHidden = true
+        self.view.window!.standardWindowButton(NSWindowButton.closeButton)!.isEnabled = false
         //self.view.window?.styleMask = NSTexturedBackgroundWindowMask | NSMiniaturizableWindowMask | NSTitledWindowMask
         
         timerSeconds.isHidden = true
@@ -267,7 +266,7 @@ class ViewController: NSViewController {
         
 //        Enable the window close button.
         //NSApplication.shared().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSClosableWindowMask |  NSMiniaturizableWindowMask | NSTitledWindowMask
-        self.view.window!.standardWindowButton(NSWindowButton.closeButton)!.isHidden = false
+        self.view.window!.standardWindowButton(NSWindowButton.closeButton)!.isEnabled = true
         
         timerSeconds.isHidden = false
         timerMinutes.isHidden = false
