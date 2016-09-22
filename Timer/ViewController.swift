@@ -15,7 +15,7 @@ import Cocoa
 class ViewController: NSViewController {
 
 //    Timer general variables
-    var timer = NSTimer()
+    var timer = Foundation.Timer()
     var timerCounter = 0
     let timerCounterInitial = 0
     var alertCounter = 0
@@ -26,7 +26,6 @@ class ViewController: NSViewController {
 //    Alert sound
     let alertSound = NSSound(data: NSDataAsset(name: "Hillside")!.data)
 //    Timer view
-    @IBOutlet weak var floatingStatusLabel: NSTextField!
     @IBOutlet weak var timeLabel: NSTextField!
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var pauseButton: NSButton!
@@ -58,7 +57,7 @@ class ViewController: NSViewController {
         timerIsActive = false
         startButtonHasBeenPressed = false
         pauseButtonHasBeenPressed = false
-        pauseButton?.enabled = false
+        pauseButton?.isEnabled = false
         
         timerCounter = timerCounterInitial
         timerSeconds.stringValue = ""
@@ -66,19 +65,19 @@ class ViewController: NSViewController {
         timerHours.stringValue = ""
         startButton.title = "Start"
         pauseButton.title = "Pause"
-        timerSeconds.enabled = true
-        timerMinutes.enabled = true
-        timerHours.enabled = true
-        timerSeconds.selectable = true
-        timerMinutes.selectable = true
-        timerHours.selectable = true
-        timerSeconds.editable = true
-        timerMinutes.editable = true
-        timerHours.editable = true
+        timerSeconds.isEnabled = true
+        timerMinutes.isEnabled = true
+        timerHours.isEnabled = true
+        timerSeconds.isSelectable = true
+        timerMinutes.isSelectable = true
+        timerHours.isSelectable = true
+        timerSeconds.isEditable = true
+        timerMinutes.isEditable = true
+        timerHours.isEditable = true
 
     }
     
-    func timerCountdown(sender: NSObject) {
+    func timerCountdown(_ sender: NSObject) {
         
         timerIsActive = true
         timerCounter = timerCounter - 1
@@ -93,25 +92,25 @@ class ViewController: NSViewController {
             startButton.title = "Start"
             startButtonHasBeenPressed = false
             pauseButtonHasBeenPressed = false
-            pauseButton.enabled = false
-            timerSeconds.selectable = true
-            timerMinutes.selectable = true
-            timerHours.selectable = true
-            timerSeconds.editable = true
-            timerMinutes.editable = true
-            timerHours.editable = true
+            pauseButton.isEnabled = false
+            timerSeconds.isSelectable = true
+            timerMinutes.isSelectable = true
+            timerHours.isSelectable = true
+            timerSeconds.isEditable = true
+            timerMinutes.isEditable = true
+            timerHours.isEditable = true
             
-            timerSeconds.enabled = true
-            timerMinutes.enabled = true
-            timerHours.enabled = true
+            timerSeconds.isEnabled = true
+            timerMinutes.isEnabled = true
+            timerHours.isEnabled = true
             
             revealAlertView()
 //            Start timer alert sound
             alertSound!.loops = true
             alertSound!.play()
 //            Timer for alert
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(ViewController.timerAlert), userInfo: nil, repeats: true)
-            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+            timer = Foundation.Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.timerAlert), userInfo: nil, repeats: true)
+            RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
         }
         else if timerCounter > 0 {
             displayCountdownValues()
@@ -135,9 +134,9 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func startOrCancelTimer(sender: AnyObject) {
+    @IBAction func startOrCancelTimer(_ sender: AnyObject) {
         
-        if startButton.hidden == false {
+        if startButton.isHidden == false {
             if timerSeconds.stringValue != "" || timerMinutes.stringValue != "" || timerHours.stringValue != "" {
                 timerIsActive = !timerIsActive
                 startButtonHasBeenPressed = !startButtonHasBeenPressed
@@ -162,19 +161,19 @@ class ViewController: NSViewController {
             
             startButton.title = "Cancel"
             timerIsActive = true
-            pauseButton.enabled = true
+            pauseButton.isEnabled = true
             
             displayCountdownValues()
 //            Timer for timer countdown
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
-            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+            timer = Foundation.Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
+            RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
             
-            timerSeconds.enabled = false
-            timerMinutes.enabled = false
-            timerHours.enabled = false
-            timerSeconds.selectable = false
-            timerMinutes.selectable = false
-            timerHours.selectable = false
+            timerSeconds.isEnabled = false
+            timerMinutes.isEnabled = false
+            timerHours.isEnabled = false
+            timerSeconds.isSelectable = false
+            timerMinutes.isSelectable = false
+            timerHours.isSelectable = false
         }
     }
     
@@ -184,9 +183,9 @@ class ViewController: NSViewController {
         initializeTimerView()
     }
 
-    @IBAction func pauseOrResumeTimer(sender: AnyObject) {
+    @IBAction func pauseOrResumeTimer(_ sender: AnyObject) {
    
-        if pauseButton.hidden == false {
+        if pauseButton.isHidden == false {
             if (timerSeconds.stringValue != "" || timerMinutes.stringValue != "" || timerHours.stringValue != "") && startButtonHasBeenPressed == true {
                 
                 pauseButtonHasBeenPressed = !pauseButtonHasBeenPressed
@@ -212,8 +211,8 @@ class ViewController: NSViewController {
         timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
         
         //                    Timer for timer countdown
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        timer = Foundation.Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
         
         pauseButton.title = "Pause"
     }
@@ -231,10 +230,11 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func dismissAlert(sender: AnyObject) {
+    @IBAction func dismissAlert(_ sender: AnyObject) {
         
-        if dismissAlertButton.hidden == false {
+        if dismissAlertButton.isHidden == false {
             timerIsActive = false
+//            Stop blinking label timer
             
     //        Stop alert sound
             alertSound!.stop()
@@ -250,19 +250,19 @@ class ViewController: NSViewController {
         
 //        Make sure the window is open and bring the window to the front.
         self.view.window?.makeKeyAndOrderFront(self)
-        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+        NSApplication.shared().activate(ignoringOtherApps: true)
 //        Disable the window close button.
-        NSApplication.sharedApplication().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSMiniaturizableWindowMask | NSTitledWindowMask
+        NSApplication.shared().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSMiniaturizableWindowMask | NSTitledWindowMask
         
-        timerSeconds.hidden = true
-        timerMinutes.hidden = true
-        timerHours.hidden = true
-        timeLabel.hidden = true
-        pauseButton.hidden = true
-        startButton.hidden = true
+        timerSeconds.isHidden = true
+        timerMinutes.isHidden = true
+        timerHours.isHidden = true
+        timeLabel.isHidden = true
+        pauseButton.isHidden = true
+        startButton.isHidden = true
         
-        alertLabel.hidden = false
-        dismissAlertButton.hidden = false
+        alertLabel.isHidden = false
+        dismissAlertButton.isHidden = false
 
     }
     
@@ -270,28 +270,28 @@ class ViewController: NSViewController {
     func revealTimerView() {
         
 //        Enable the window close button.
-        NSApplication.sharedApplication().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSClosableWindowMask |  NSMiniaturizableWindowMask | NSTitledWindowMask
+        NSApplication.shared().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSClosableWindowMask |  NSMiniaturizableWindowMask | NSTitledWindowMask
         
-        timerSeconds.hidden = false
-        timerMinutes.hidden = false
-        timerHours.hidden = false
-        timeLabel.hidden = false
-        pauseButton.hidden = false
-        startButton.hidden = false
+        timerSeconds.isHidden = false
+        timerMinutes.isHidden = false
+        timerHours.isHidden = false
+        timeLabel.isHidden = false
+        pauseButton.isHidden = false
+        startButton.isHidden = false
         
-        alertLabel.hidden = true
-        dismissAlertButton.hidden = true
+        alertLabel.isHidden = true
+        dismissAlertButton.isHidden = true
     }
 
-    @IBAction func toggleFloatWindowOnTop(sender: NSMenuItem) {
+    @IBAction func toggleFloatWindowOnTop(_ sender: NSMenuItem) {
         
         //self.view.window?.level == sender.state ? Int(CGWindowLevelForKey(.FloatingWindowLevelKey)) : Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
         
-        if self.view.window?.level == Int(CGWindowLevelForKey(.NormalWindowLevelKey)) {
-            self.view.window!.level =  Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
+        if self.view.window?.level == Int(CGWindowLevelForKey(.normalWindow)) {
+            self.view.window!.level =  Int(CGWindowLevelForKey(.floatingWindow))
         }
         else {
-            self.view.window?.level = Int(CGWindowLevelForKey(.NormalWindowLevelKey))
+            self.view.window?.level = Int(CGWindowLevelForKey(.normalWindow))
         }
         
         if sender.state == 1 {
