@@ -26,7 +26,8 @@ class ViewController: NSViewController {
 //    Alert sound
     let alertSound = NSSound(data: NSDataAsset(name: "Hillside")!.data)
 //    Timer view
-    @IBOutlet weak var timeLabel: NSTextField!
+    @IBOutlet weak var timeLabelLeft: NSTextField!
+    @IBOutlet weak var timeLabelRight: NSTextField!
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var pauseButton: NSButton!
     @IBOutlet weak var timerSeconds: NSTextField!
@@ -45,14 +46,7 @@ class ViewController: NSViewController {
         timerCounter = timerCounterInitial
         alertCounter = alertCounterInitial
     }
-    
-    override var representedObject: AnyObject? {
-        didSet {
-            // Update the view, if already loaded.
-            
-        }
-    }
-    
+        
     func initializeTimerView() {
         timerIsActive = false
         startButtonHasBeenPressed = false
@@ -252,12 +246,14 @@ class ViewController: NSViewController {
         self.view.window?.makeKeyAndOrderFront(self)
         NSApplication.shared().activate(ignoringOtherApps: true)
 //        Disable the window close button.
-        NSApplication.shared().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSMiniaturizableWindowMask | NSTitledWindowMask
+        self.view.window!.standardWindowButton(NSWindowButton.closeButton)!.isHidden = true
+        //self.view.window?.styleMask = NSTexturedBackgroundWindowMask | NSMiniaturizableWindowMask | NSTitledWindowMask
         
         timerSeconds.isHidden = true
         timerMinutes.isHidden = true
         timerHours.isHidden = true
-        timeLabel.isHidden = true
+        timeLabelLeft.isHidden = true
+        timeLabelRight.isHidden = true
         pauseButton.isHidden = true
         startButton.isHidden = true
         
@@ -270,12 +266,14 @@ class ViewController: NSViewController {
     func revealTimerView() {
         
 //        Enable the window close button.
-        NSApplication.shared().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSClosableWindowMask |  NSMiniaturizableWindowMask | NSTitledWindowMask
+        //NSApplication.shared().windows.first?.styleMask = NSTexturedBackgroundWindowMask | NSClosableWindowMask |  NSMiniaturizableWindowMask | NSTitledWindowMask
+        self.view.window!.standardWindowButton(NSWindowButton.closeButton)!.isHidden = false
         
         timerSeconds.isHidden = false
         timerMinutes.isHidden = false
         timerHours.isHidden = false
-        timeLabel.isHidden = false
+        timeLabelLeft.isHidden = false
+        timeLabelRight.isHidden = false
         pauseButton.isHidden = false
         startButton.isHidden = false
         
