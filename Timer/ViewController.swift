@@ -29,18 +29,10 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
-//    Timer general variables
-    var timer = Foundation.Timer()
-    var timerCounter = 0
-    let timerCounterInitial = 0
-    var alertCounter = 0
-    let alertCounterInitial = 240
-    var timerIsActive = false
-    var startButtonHasBeenPressed = false
-    var pauseButtonHasBeenPressed = false
-//    Alert sound
-    let alertSound = NSSound(data: NSDataAsset(name: "Hillside")!.data)
+    
+//    Timer class
+    let timer = Timer()
+    
 //    Timer view
     @IBOutlet weak var timeLabelLeft: NSTextField!
     @IBOutlet weak var timeLabelRight: NSTextField!
@@ -59,17 +51,18 @@ class ViewController: NSViewController {
         
         // Do any additional setup after loading the view.
         initializeTimerView()
-        timerCounter = timerCounterInitial
-        alertCounter = alertCounterInitial
+        timer.counter = timer.counterInitial
+        timer.alert.counter = timer.alert.counterInitial
+        
     }
     
     func initializeTimerView() {
-        timerIsActive = false
-        startButtonHasBeenPressed = false
-        pauseButtonHasBeenPressed = false
+        timer.isActive = false
+        timer.startButtonHasBeenPressed = false
+        timer.pauseButtonHasBeenPressed = false
         pauseButton?.isEnabled = false
         
-        timerCounter = timerCounterInitial
+        timer.counter = timer.counterInitial
         timerSeconds.stringValue = ""
         timerMinutes.stringValue = ""
         timerHours.stringValue = ""
@@ -88,19 +81,19 @@ class ViewController: NSViewController {
     
     func timerCountdown(_ sender: NSObject) {
         
-        timerIsActive = true
-        timerCounter = timerCounter - 1
+        timer.isActive = true
+        timer.counter = timer.counter - 1
         
-        if timerCounter <= 0 {
-            timer.invalidate()
-            timerCounter = timerCounterInitial
+        if timer.counter <= 0 {
+            timer.timer.invalidate()
+            timer.counter = timer.counterInitial
             timerSeconds.stringValue = ""
             timerMinutes.stringValue = ""
             timerHours.stringValue = ""
-            timerIsActive = false
+            timer.isActive = false
             startButton.title = "Start"
-            startButtonHasBeenPressed = false
-            pauseButtonHasBeenPressed = false
+            timer.startButtonHasBeenPressed = false
+            timer.pauseButtonHasBeenPressed = false
             pauseButton.isEnabled = false
             timerSeconds.isSelectable = true
             timerMinutes.isSelectable = true
@@ -115,22 +108,22 @@ class ViewController: NSViewController {
             
             revealAlertView()
 //            Start timer alert sound
-            alertSound!.loops = true
-            alertSound!.play()
+            timer.alert.sound!.loops = true
+            timer.alert.sound!.play()
 //            Timer for alert
-            timer = Foundation.Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.timerAlert), userInfo: nil, repeats: true)
-            RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+            timer.timer = Foundation.Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.timerAlert), userInfo: nil, repeats: true)
+            RunLoop.main.add(timer.timer, forMode: RunLoopMode.commonModes)
         }
-        else if timerCounter > 0 {
+        else if timer.counter > 0 {
             displayCountdownValues()
             //            Exiting the timer window stops the counter
         }
     }
     
     func displayCountdownValues() {
-        timerSeconds.stringValue = "\(timerCounter % 60)"
-        timerMinutes.stringValue = "\((timerCounter / 60) % 60)"
-        timerHours.stringValue = "\((timerCounter / 3600) % 24)"
+        timerSeconds.stringValue = "\(timer.counter % 60)"
+        timerMinutes.stringValue = "\((timer.counter / 60) % 60)"
+        timerHours.stringValue = "\((timer.counter / 3600) % 24)"
         
         if timerSeconds.stringValue == "0" {
             timerSeconds.stringValue = "00"
@@ -147,14 +140,14 @@ class ViewController: NSViewController {
         
         if startButton.isHidden == false {
             if timerSeconds.stringValue != "" || timerMinutes.stringValue != "" || timerHours.stringValue != "" {
-                timerIsActive = !timerIsActive
-                startButtonHasBeenPressed = !startButtonHasBeenPressed
+                timer.isActive = !timer.isActive
+                timer.startButtonHasBeenPressed = !timer.startButtonHasBeenPressed
                 
-                if timerIsActive == false || pauseButtonHasBeenPressed == true {
+                if timer.isActive == false || timer.pauseButtonHasBeenPressed == true {
                     
                     cancelTimer()
                 }
-                else if timerIsActive == true {
+                else if timer.isActive == true {
                     
                     startTimer()
                 }
@@ -164,18 +157,18 @@ class ViewController: NSViewController {
     
     func startTimer() {
         
-        timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
+        timer.counter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
 
-        if timerCounter >= 0 {
+        if timer.counter >= 0 {
             
             startButton.title = "Cancel"
-            timerIsActive = true
+            timer.isActive = true
             pauseButton.isEnabled = true
             
             displayCountdownValues()
 //            Timer for timer countdown
-            timer = Foundation.Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
-            RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+            timer.timer = Foundation.Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
+            RunLoop.main.add(timer.timer, forMode: RunLoopMode.commonModes)
             
             timerSeconds.isEnabled = false
             timerMinutes.isEnabled = false
@@ -187,7 +180,7 @@ class ViewController: NSViewController {
     }
     
     func cancelTimer() {
-        timer.invalidate()
+        timer.timer.invalidate()
 
         initializeTimerView()
     }
@@ -195,33 +188,33 @@ class ViewController: NSViewController {
     @IBAction func pauseOrResumeTimer(_ sender: AnyObject) {
    
         if pauseButton.isHidden == false {
-            if (timerSeconds.stringValue != "" || timerMinutes.stringValue != "" || timerHours.stringValue != "") && startButtonHasBeenPressed == true {
+            if (timerSeconds.stringValue != "" || timerMinutes.stringValue != "" || timerHours.stringValue != "") && timer.startButtonHasBeenPressed == true {
                 
-                pauseButtonHasBeenPressed = !pauseButtonHasBeenPressed
+                timer.pauseButtonHasBeenPressed = !timer.pauseButtonHasBeenPressed
                 
-                if timerIsActive == true {
+                if timer.isActive == true {
                     pauseTimer()
                 }
-                else if timerIsActive == false {
+                else if timer.isActive == false {
                     resumeTimerFromPause()
                 }
                 
-                timerIsActive = !timerIsActive
+                timer.isActive = !timer.isActive
             }
         }
     }
     
     func pauseTimer() {
-        timer.invalidate()
+        timer.timer.invalidate()
         pauseButton.title = "Resume"
     }
     
     func resumeTimerFromPause() {
-        timerCounter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
+        timer.counter = (timerHours.integerValue * 3600) + (timerMinutes.integerValue * 60) + timerSeconds.integerValue
         
         //                    Timer for timer countdown
-        timer = Foundation.Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+        timer.timer = Foundation.Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerCountdown), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer.timer, forMode: RunLoopMode.commonModes)
         
         pauseButton.title = "Pause"
     }
@@ -229,27 +222,27 @@ class ViewController: NSViewController {
 //    Count down until the alert period ends, then stop the alert but do not dismiss the alert view.
     func timerAlert() {
         
-        alertCounter -= 1
+        timer.alert.counter -= 1
         
-        if alertCounter == 0 {
+        if timer.alert.counter == 0 {
             //        Stop alert sound
-            alertSound!.stop()
+            timer.alert.sound!.stop()
             //        End countdown
-            timer.invalidate()
+            timer.timer.invalidate()
         }
     }
     
     @IBAction func dismissAlert(_ sender: AnyObject) {
         
         if dismissAlertButton.isHidden == false {
-            timerIsActive = false
+            timer.isActive = false
 //            Stop blinking label timer
             
     //        Stop alert sound
-            alertSound!.stop()
+            timer.alert.sound!.stop()
     //        Reset countdown
-            timer.invalidate()
-            alertCounter = alertCounterInitial
+            timer.timer.invalidate()
+            timer.alert.counter = timer.alert.counterInitial
             revealTimerView()
         }
     }
@@ -315,4 +308,3 @@ class ViewController: NSViewController {
         }
     }
 }
-

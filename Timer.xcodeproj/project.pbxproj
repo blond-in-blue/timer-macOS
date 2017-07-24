@@ -14,6 +14,7 @@
 		5A69B9501C9B7CD300BA4E3C /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A69B94F1C9B7CD300BA4E3C /* TimerTests.swift */; };
 		5A69B95B1C9B7CD300BA4E3C /* TimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A69B95A1C9B7CD300BA4E3C /* TimerUITests.swift */; };
 		5A87CC9A1CE2EE8B00BAB60D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A87CC991CE2EE8B00BAB60D /* Assets.xcassets */; };
+		5AC5271A1F172A8300F3CE75 /* timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC527191F172A8300F3CE75 /* timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,7 @@
 		5A1DD3321CECD66E00E911AE /* TextFieldFocusRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldFocusRing.swift; sourceTree = "<group>"; };
 		5A69B93A1C9B7CD300BA4E3C /* Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A69B93D1C9B7CD300BA4E3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5A69B93F1C9B7CD300BA4E3C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5A69B93F1C9B7CD300BA4E3C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A69B9441C9B7CD300BA4E3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A69B9461C9B7CD300BA4E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A69B94B1C9B7CD300BA4E3C /* TimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +48,7 @@
 		5A69B95A1C9B7CD300BA4E3C /* TimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUITests.swift; sourceTree = "<group>"; };
 		5A69B95C1C9B7CD300BA4E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A87CC991CE2EE8B00BAB60D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5AC527191F172A8300F3CE75 /* timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = timer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				5A69B93D1C9B7CD300BA4E3C /* AppDelegate.swift */,
 				5A69B93F1C9B7CD300BA4E3C /* ViewController.swift */,
+				5AC527191F172A8300F3CE75 /* timer.swift */,
 				5A87CC991CE2EE8B00BAB60D /* Assets.xcassets */,
 				5A69B9431C9B7CD300BA4E3C /* Main.storyboard */,
 				5A1DD3321CECD66E00E911AE /* TextFieldFocusRing.swift */,
@@ -261,6 +264,7 @@
 				5A1DD3331CECD66E00E911AE /* TextFieldFocusRing.swift in Sources */,
 				5A69B9401C9B7CD300BA4E3C /* ViewController.swift in Sources */,
 				5A69B93E1C9B7CD300BA4E3C /* AppDelegate.swift in Sources */,
+				5AC5271A1F172A8300F3CE75 /* timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
